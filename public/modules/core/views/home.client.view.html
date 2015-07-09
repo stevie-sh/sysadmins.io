@@ -1,0 +1,48 @@
+<section data-ng-controller="HomeController">
+        <div class="row myrow">
+            <div class="col-md-4">
+                <h1>
+                    <strong>sysadmins.io</strong>
+                <br>
+                Sysadmins, as a service. 
+                <br>
+                Completely Free
+            </h1>
+            <h2>Focus on your idea. Let us handle the rest.</h2>
+            <section ng-controller="AuthenticationController">
+            <form name="userForm" data-ng-submit="signup()" novalidate autocomplete="off">
+                    <div class="form-group">
+                        <input type="email" placeholder="Email Address" class="form-control formclass" size="30" data-ng-model="credentials.email">
+                    </div>
+                    <div class="form-group">
+                    <input type="password" placeholder="Password" class="form-control formclass" data-ng-model="credentials.password" size="30">
+                    </div>
+                    <div>
+                        <input type="submit" value="Create Account" class="btn btn-lg btn-primary btn-block formclass submit">
+                    </div>
+                    <div data-ng-show="error" class="text-center text-danger">
+                        <strong data-ng-bind="error"></strong>
+                    </div>
+            </form>
+                </section>
+            </div>
+
+
+            <div class="col-md-7 col-md-offset-1">
+                <div class="browser"> 
+                    <div class="crossbar">
+                        <ul class="dots">
+                            <li class="red"></li>
+                            <li class="yellow"></li>
+                            <li class="green"></li>
+                        </ul>
+                    </div>
+                    <div class="browser-content">
+
+                   </div>
+                </div>
+            </div>
+        </div>
+        
+</section>
+

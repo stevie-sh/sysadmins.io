@@ -7,6 +7,8 @@ var init = require('./config/init')(),
 	mongoose = require('mongoose'),
 	chalk = require('chalk');
 
+    
+
 /**
  * Main application entry file.
  * Please note that the order of loading is important.
@@ -27,6 +29,15 @@ mongoose.connection.on('error', function(err) {
 
 // Init the express application
 var app = require('./config/express')(db);
+
+
+/* socket.io chat */
+var server = require('http').Server(app),
+    io = require('socket.io')(server); //attaching itself to the http server process
+
+io.on('connection', function(socket){
+    console.log('user connected');
+});
 
 // Bootstrap passport config
 require('./config/passport')();

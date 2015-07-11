@@ -1,0 +1,64 @@
+[4mRunning "jshint:all" (jshint) task[24m
+
+[1m   public/modules/core/controllers/welcome.client.controller.js[22m
+      1 |[90m'use strict'[39m
+         ^ Missing semicolon.
+      3 |[90mangular.module('welcome').controller('WelcomeController', ['socket', function(socket {[39m
+                                                                                              ^ Expected ')' to match '(' from line 3 and instead saw '{'.
+      3 |[90mangular.module('welcome').controller('WelcomeController', ['socket', function(socket {[39m
+                                                                                              ^ 'function closure expressions' is only available in Mozilla JavaScript extensions (use moz option).
+      4 |[90m    socket.on('myEvent', cb);[39m
+                                     ^ Expected ']' to match '[' from line 3 and instead saw ';'.
+      4 |[90m    socket.on('myEvent', cb);[39m
+                                     ^ Expected ')' and instead saw ''.
+[31m>> [39mMissing semicolon.
+      4 |[90m    socket.on('myEvent', cb);[39m
+                                  ^ 'cb' is not defined.
+[1m   public/modules/core/services/socket.client.service.js[22m
+      3 |[90m    return socket;[39m
+             ^ Missing "use strict" statement.
+      4 |[90m})[39m
+           ^ Missing semicolon.
+      1 |[90mapp.factory('socket', function(){[39m
+         ^ 'app' is not defined.
+      3 |[90m    return socket;[39m
+                    ^ 'socket' is not defined.
+[1m   server.js[22m
+     40 |[90m};[39m
+          ^ Expected ')' and instead saw ';'.
+     40 |[90m};[39m
+           ^ Missing semicolon.
+     36 |[90m    io = require('socket.io')(server); //attaching itself to the http server process[39m
+             ^ 'io' is not defined.
+     38 |[90mio.on('connection', function(socket){[39m
+         ^ 'io' is not defined.
+
+[31m>> [39m15 errors in 60 files
+[33mWarning: Task "jshint:all" failed. [4mUsed --force, continuing.[24m[39m
+
+[4mRunning "csslint:all" (csslint) task[24m
+Linting public/modules/core/css/core.css...[31mERROR[39m
+[L31:C20]
+WARNING: Values of 0 shouldn't have units specified. You don't need to specify units when a value is 0. (zero-units) Browsers: All
+[L64:C14]
+WARNING: Values of 0 shouldn't have units specified. You don't need to specify units when a value is 0. (zero-units) Browsers: All
+[L65:C13]
+WARNING: Values of 0 shouldn't have units specified. You don't need to specify units when a value is 0. (zero-units) Browsers: All
+[32m>> [39m2 files lint free.
+
+[4mRunning "copy:localConfig" (copy) task[24m
+
+
+[4mRunning "concurrent:default" (concurrent) task[24m
+[4mRunning "watch" task[24m
+Waiting...
+[4mRunning "nodemon:dev" (nodemon) task[24m
+[33m[nodemon] v1.2.1[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching: app/views/**/*.* gruntfile.js server.js config/**/*.js app/**/*.js[39m
+[32m[nodemon] starting `node --debug server.js`[39m
+[31mFatal error: Port 35729 is already in use by another process.[39m
+    [33mWarning:  [4mUsed --force, continuing.[24m[39m
+        
+    
+    [31m[nodemon] app crashed - waiting for file changes before starting...[39m

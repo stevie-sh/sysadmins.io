@@ -35,15 +35,32 @@ var app = require('./config/express')(db);
 var server = require('http').Server(app),
     io = require('socket.io')(server); //attaching itself to the http server process
 
-io.on('connection', function(socket){
-    console.log('user connected');
+
+//sockets
+io.on('connection', function(sock){
+    console.log('socket connected!');
+
+    sock.on('chat', function(data){
+        console.log('chat message rcvd: ', data.message);
+        io.emit('myEvent', { foo: 'bar' });
+    });
 });
 
 // Bootstrap passport config
 require('./config/passport')();
 
 // Start the app by listening on <port>
-app.listen(config.port);
+//app.listen(config.port);
+
+
+// start app
+//app.listen(app.get('port')); //this breaks socket.io
+server.listen(config.port, function(){
+    console.log('Listening on http://localhost:%d', config.port);
+});
+
+
+
 
 // Expose app
 exports = module.exports = app;

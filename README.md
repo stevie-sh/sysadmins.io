@@ -28,5 +28,8 @@ Revenue Sources:
 * Open.EDU model & donations
 * Charge per server to use the full platform.
 
+Other Points:
+* Is typeform insecure for this purpose?
+
 
 

@@ -18,11 +18,15 @@ Protoype 1 Goals:
 
 Ideas:  
 * Lightweight daemon that can run on servers that give permission to enable higher transparency and monitoring of the SA.
-* 
+* Automation for the servers created.
+*  Look at ServerPilot
+*  Interactive console in the browser
 
 Revenue Sources:  
 * Delayed
 * % of relationship
 * Open.EDU model & donations
 * Charge per server to use the full platform.
+
+
 

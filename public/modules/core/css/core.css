@@ -142,3 +142,21 @@ body.ng-cloak
     border: none;
 }
 
+/* Chat Client CSS */
+
+/* default border style is none */
+
+.col-md-2.server-list {
+    background-color: black;
+    border-style: solid;
+    border-color: yellow;
+    border-width: 3px;
+}
+
+.server-list p {
+    color: white;
+
+
+
+}
+

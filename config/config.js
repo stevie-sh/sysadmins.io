@@ -88,3 +88,22 @@ module.exports.getCSSAssets = function() {
 	var output = this.getGlobbedFiles(this.assets.lib.css.concat(this.assets.css), 'public/');
 	return output;
 };
+
+
+/*
+ * Get overrides
+ *
+ */
+
+module.exports.getCSSOverrides = function() {
+     var output = this.getGlobbedFiles(this.assets.overrides, 'public/');
+     return output;
+}; 
+
+/*
+ * Get User's State or View
+ */
+
+module.exports.getCurrentView = function() {
+    
+}

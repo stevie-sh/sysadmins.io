@@ -2,7 +2,7 @@
 
 module.exports = {
 	app: {
-		title: 'sysadmin.io',
+		title: 'sysadmins.io',
 		description: 'System Administration as a Service. Completely Free. Focus on your idea. Let us handle the rest.',
 		keywords: 'system administration, saas, centos, rhel, managed vps, aws'
 	},
@@ -57,6 +57,9 @@ module.exports = {
 		css: [
 			'public/modules/**/css/*.css'
 		],
+        overrides: [
+            'public/modules/**/css/overrides/*.css'
+        ],
 		js: [
 			'public/config.js',
 			'public/application.js',

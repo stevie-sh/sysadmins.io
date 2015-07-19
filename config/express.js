@@ -40,6 +40,8 @@ module.exports = function(db) {
 	app.locals.facebookAppId = config.facebook.clientID;
 	app.locals.jsFiles = config.getJavaScriptAssets();
 	app.locals.cssFiles = config.getCSSAssets();
+    app.locals.cssOverrides = config.getCSSOverrides();
+    app.locals.active = config.getCurrentView();
 
 	// Passing the request url to environment locals
 	app.use(function(req, res, next) {
@@ -160,6 +162,7 @@ module.exports = function(db) {
 		return httpsServer;
 	}
 
+    console.log(app.locals.cssOverrides);
 	// Return Express server instance
 	return app;
 };

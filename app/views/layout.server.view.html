@@ -39,6 +39,12 @@
 		<link rel="stylesheet" href="{{cssFile}}">
 	{% endfor %}
 
+    <!--CSS Overrides -->
+    {% if active %}
+        {% for cssOverrideFile in cssOverrides %}<link rel="stylesheet" href="{{cssOverrideFile}}">
+        {% endfor %}
+    {% endif %}
+
 	<!-- HTML5 Shim -->
 	<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -71,7 +77,8 @@
 	{% if process.env.NODE_ENV === 'development' %}
 	<!--Livereload script rendered -->
 	<script type="text/javascript" src="http://{{request.hostname}}:35729/livereload.js"></script>
-	{% endif %}
+    {% endif %}
+
 
 	<!--[if lt IE 9]>
 	<section class="browsehappy jumbotron hide">

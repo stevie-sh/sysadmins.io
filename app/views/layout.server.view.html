@@ -40,10 +40,8 @@
 	{% endfor %}
 
     <!--CSS Overrides -->
-    {% if active %}
-        {% for cssOverrideFile in cssOverrides %}<link rel="stylesheet" href="{{cssOverrideFile}}">
-        {% endfor %}
-    {% endif %}
+    {% block overrides %}
+    {% endblock overrides %}
 
 	<!-- HTML5 Shim -->
 	<!--[if lt IE 9]>

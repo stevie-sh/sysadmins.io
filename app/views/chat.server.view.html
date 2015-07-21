@@ -1,0 +1,11 @@
+{% extends 'layout.server.view.html' %}
+
+{% block overrides %}
+    {% for cssOverrideFile in cssOverrides %}
+    <link rel="stylesheet" href="{{cssOverrideFile}}">
+    {% endfor %}
+{% endblock overrides %}
+
+{% block content %}
+	<section data-ui-view></section>
+{% endblock %}

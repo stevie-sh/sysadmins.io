@@ -6,6 +6,6 @@ angular.module('chat')
                 $stateProvider.
                     state('chat', {
                         url: '/chat',
-                        templateUrl: '../../../../app/views/mvp1.server.view.html'
+                        templateUrl: '/modules/chat/views/chat.client.view.html'
                 });
  }]);

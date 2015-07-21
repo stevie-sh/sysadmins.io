@@ -157,3 +157,8 @@ body.ng-cloak
     color: white;
 }
 
+.navbar-fixed-top {
+	z-index: 0;
+}
+
+

@@ -1,18 +1,14 @@
 'use strict';
 
-angular.module('chat').controller('HeaderController', ['$scope', 'Authentication', 'Menus',
-	function($scope, Authentication, Menus) {
+angular.module('chat').controller('ChatController', ['$scope', '$location', 'Authentication', 'Menus',
+	function($scope, $location, Authentication, Menus) {
 		$scope.authentication = Authentication;
-		$scope.isCollapsed = false;
-		$scope.menu = Menus.getMenu('topbar');
+		$scope.isCollapsed = true;
 
-		$scope.toggleCollapsibleMenu = function() {
-			$scope.isCollapsed = !$scope.isCollapsed;
-		};
-
-		// Collapsing the menu after navigation
-		$scope.$on('$stateChangeSuccess', function() {
-			$scope.isCollapsed = false;
+		//show the menu bar again...
+		$scope.$parent.menubarVisible = false;
+		$scope.$on('$stateChangeSuccess', function () {	
+			//$scope.$parent.menubarVisible = false;
 		});
 	}
 ]);

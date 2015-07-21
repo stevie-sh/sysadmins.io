@@ -40,8 +40,8 @@ module.exports = function(db) {
 	app.locals.facebookAppId = config.facebook.clientID;
 	app.locals.jsFiles = config.getJavaScriptAssets();
 	app.locals.cssFiles = config.getCSSAssets();
-    app.locals.cssOverrides = config.getCSSOverrides();
-    app.locals.active = config.getCurrentView();
+  app.locals.cssOverrides = config.getCSSOverrides();
+  app.locals.active = config.getCurrentView();
 
 	// Passing the request url to environment locals
 	app.use(function(req, res, next) {

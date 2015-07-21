@@ -1,3 +1,20 @@
+<!-- Header CSS --!>
 .navbar-collapse.collapse{
     background-color: #000;
+}
+
+.navbar-default.mymenu{
+    padding-top: initial;
+}
+
+.container.header {
+    margin-right: 25px;
+    margin-left: 25px;
+    height: 50px;
+}
+
+.navbar-brand.mylogo {
+    background-size: 70px 70px;
+    width: 70px;
+    height: 70px;
 }

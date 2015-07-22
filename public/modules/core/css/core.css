@@ -158,7 +158,9 @@ body.ng-cloak
 }
 
 .navbar-fixed-top {
-	z-index: 0;
+/*	z-index: 0; */
 }
 
-
+li.ng-binding {
+	padding-top: 1em;
+}

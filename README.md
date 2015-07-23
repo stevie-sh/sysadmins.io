@@ -13,7 +13,13 @@ Log in, create a ticket, get assigned to a qualified S.A. automatically.
 Public API to create slack-like chat room comments, where each server is almost like a room in of itself.
 
 
-
+##Premium Plan Ideas:
+* Dedicated admins now! Build a relationship with your sysadmin.
+* Capability to use valuable tools of sysadmins.io -- proprietary software into chat.
+* Clear documentation on what happened and how problem or ticket was solved and future prevention.
+* Continuous monitoring and management
+* Guarantees
+* Value add for customer to better understand what the sysadmin is doing.
 
 Protoype 1 Goals:  
 * Get sysadmins in contact with customers. 

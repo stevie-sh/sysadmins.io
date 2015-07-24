@@ -14,16 +14,12 @@ a single consolidated workflow in the future.
 
 For now, however. Let's make sure all commits are going through pull-requests.
 
-[Git-Workflow
-Resource](https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow)
+[Git-Workflow Resource](https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow)
 
-[Pull Request Resource
-#2](https://help.github.com/articles/using-pull-requests/)
+[Pull Request Resource 2](https://help.github.com/articles/using-pull-requests/)
 
-
-
-
-##system administration as a service and on-demand -- completely free
+##Description
+###system administration as a service and on-demand -- completely free
 
 Target Market:   
 System administrators, non-technical founders, busy IT admins.

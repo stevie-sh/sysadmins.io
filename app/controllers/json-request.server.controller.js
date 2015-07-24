@@ -4,13 +4,13 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    _ = require('lodash');
+    _ = require('lodash'),
+		JsonRequest = mongoose.model('JsonRequest');
 
 /**
  * Create a Json request
  */
 exports.create = function(req, res) {
-
 };
 
 /**

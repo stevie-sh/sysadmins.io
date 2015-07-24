@@ -8,10 +8,10 @@ angular.module('json-request').controller('JsonRequestController', ['$scope', '$
 							
 				$scope.data = data;			
 				$scope.status = status;	
+			}).
+			error(function (data, status, headers, config) {
+				$scope.data = data || 'Request Failed';
+				$scope.status = status;
 			});
-			//failure(function (data, status, headers, config) {
-			//	$scope.data = data || 'Request Failed';
-			//	$scope.status = status;
-			//});
 	}
 ]);

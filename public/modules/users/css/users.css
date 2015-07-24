@@ -12,3 +12,6 @@
 	right: 10px;
 	position: absolute;
 }
+a:hover{
+	color:#337ab7 !important;
+}

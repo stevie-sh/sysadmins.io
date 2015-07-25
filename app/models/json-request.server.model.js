@@ -54,7 +54,6 @@ var AnswerSchema = new Schema({
 	questionId_3 : String,
 	questionId_4 : String,
 	questionId_5 : String
-	
 });
 
 mongoose.model('Question', QuestionSchema);

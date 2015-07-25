@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .content {
 	margin-top: 132px;
 }
@@ -182,3 +183,171 @@ li.ng-binding {
 .server.focus{
 	background:#2ECC71;
 }
+=======
+.content {
+	margin-top: 132px;
+}
+.undecorated-link:hover {
+	text-decoration: none;
+}
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	display: none !important;
+}
+.ng-invalid.ng-dirty {
+	border-color: #FA787E;
+}
+.ng-valid.ng-dirty {
+	border-color: #78FA89;
+}
+.browsehappy.jumbotron.hide,
+body.ng-cloak
+{
+	display: block;
+}
+
+
+/* Steve's CSS */
+
+/* div that contains both classes */
+.navbar-inverse.mymenu {
+    background-color:#ffffff;
+    border-color: #ffffff;
+    padding-top: 20px;
+    height: 72px;
+    margin-bottom: 0px;
+}
+
+.navbar-default.mymenu{
+    background-color:#ffffff;
+    border-color: #ffffff;
+    padding-top: 30px;
+    margin-bottom: 50px;
+}
+
+.navbar-brand.mylogo {
+    background:url("../../../assets/onlylogo.svg");
+    background-size: 100px 100px;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    left: 5px;
+}
+
+
+.col-md-7 .browser {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 100%;
+}
+
+.col-md-7 .browser .crossbar {
+    border-bottom: 1px solid #ccc;
+    padding: 7px 11px;
+    width:100%
+}
+
+.crossbar ul.dots {
+    padding: 0px;
+    margin: 0px;
+}
+
+.dots li {
+    border-radius:100%;
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+}
+
+.dots .red {
+    background-color: #e34c24;
+}
+
+.dots .yellow {
+    background-color: #e4d735;
+}
+
+.dots .green {
+    background-color: #2ad665;
+}
+
+.browser .browser-content {
+    background-image: url("https://www.digitalocean.com/assets/images/create-droplet-v5-e512defa.gif");
+    height: 440px;
+    background-position: center top;
+    overflow: hidden;
+    position: relative;
+    background-size: cover;
+}
+
+.row h1, .row h2 {
+    font-family: 'Open Sans', serif;
+    font-weight: 300;
+    font-size: 36px;
+    letter-spacing: -1.5px;
+    line-height: 48px;
+    margin: 0;
+    text-align: left;
+    color: #666;
+}
+
+.row h1::after {
+    background-color: #bbb;
+    content: " ";
+    display: block;
+    height: 1px;
+    margin: 30px 0;
+    width: 150px;
+}
+
+.row h2 {
+    letter-spacing: -.5px;
+    line-height: 39px;
+    font-size: 28px;
+    font-weight: 100;
+    margin-bottom: 45px;
+}
+
+.row strong {
+    font-weight: 500;
+}
+
+.formclass {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    display: block;
+    height: 40px;
+    font-family: 'Open Sans', serif;
+    font-size: 16px;
+    font-weight: 100;
+    max-width: 440px;
+    padding: 10px;
+}
+
+.submit, .submit:hover {
+    background-color: #2ecc71;
+    border: none;
+}
+
+/* Chat Client CSS */
+
+/* default border style is none */
+
+.col-md-2.server-list {
+    background-color: black;
+    border-style: solid;
+    border-color: yellow;
+    border-width: 3px;
+}
+
+.server-list p {
+    color: white;
+}
+
+.navbar-fixed-top {
+/*	z-index: 0; */
+}
+
+li.ng-binding {
+	padding-top: 1em;
+}
+>>>>>>> 62a9f64c49c918af853ed9329aadd4bd3ac06c66

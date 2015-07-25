@@ -18,8 +18,12 @@ body.ng-cloak
 {
 	display: block;
 }
-
-
+*{
+	font-family: 'Roboto', sans-serif !important;
+}
+h1{
+	font-weight: 300;
+}
 /* Steve's CSS */
 
 /* div that contains both classes */
@@ -163,4 +167,18 @@ body.ng-cloak
 
 li.ng-binding {
 	padding-top: 1em;
+}
+
+/* Server List */
+.contain{
+	width:960px;
+	margin:30px 0px;
+}
+.server{
+	background:#323334;
+	width:300px;
+	height:200px;
+}
+.server.focus{
+	background:#2ECC71;
 }

@@ -43,7 +43,7 @@ h1{
 }
 
 .navbar-brand.mylogo {
-    background:url("../../../logos/onlylogo.svg");
+    background:url("../../../assets/onlylogo.svg");
     background-size: 100px 100px;
     width: 100px;
     height: 100px;
@@ -179,15 +179,30 @@ li.ng-binding {
 	width:300px;
 	height:200px;
 	float:left;
-	padding:115px 0px;
+	border-radius: 4px;
 }
 .server.focus{
-	background:#2ECC71;
+	background-color:#2ECC71;
 }
-.server .info{
+.info{
 	display:inline-block;
+	padding: 60px 20px;
 }
- h2{
+h2{
 	font-size:18pt;
 	font-weight:300;
+	margin:0px;
+	margin-bottom:10px;
+}
+.ubuntu{
+	width:100%;
+	height:200px;
+	background-image:url('../../../assets/os/ubuntu.png');
+	background-repeat: no-repeat;
+	background-size:100px 100px;
+	background-position: center center;
+
+}
+.padding{
+	margin:15px 0px;
 }

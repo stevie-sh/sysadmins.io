@@ -56,6 +56,6 @@ var AnswerSchema = new Schema({
 	questionId_5 : String
 });
 
-mongoose.model('Question', QuestionSchema);
-mongoose.model('Answer', AnswerSchema);
+//mongoose.model('Question', QuestionSchema);
+//mongoose.model('Answer', AnswerSchema);
 mongoose.model('JsonRequest', JsonRequestSchema);

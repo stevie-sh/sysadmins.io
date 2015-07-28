@@ -5,6 +5,15 @@ var mongoose = require('mongoose'),
 		Ticket = mongoose.model('Ticket'),
 		_ = require('lodash');
 
+exports.latest = function(req, res) {
+	Ticket.findOne({}, {}, { sort: { 'created_at' : -1 } }, 
+			function(err, ticket) {
+				res.json(ticket);
+			});
+
+};
+
+
 exports.create = function(req, res) {
 	console.log(req.body.ticket);	
 	var ticket = new Ticket(req.body.ticket);
@@ -16,10 +25,10 @@ exports.create = function(req, res) {
 
 exports.read = function(req, res) {
 	Ticket.findById(req.params.ticket_id, function(err, ticket)
-		{
-			if (err) res.send(err);
-			res.json(ticket);
-		});
+			{
+				if (err) res.send(err);
+				res.json(ticket);
+			});
 };
 
 exports.update = function(req, res) {

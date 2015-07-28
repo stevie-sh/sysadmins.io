@@ -3,6 +3,9 @@
 var tickets = require('../../app/controllers/tickets.server.controller');	
 
 module.exports = function(app) {
+	app.route('/api/ticket/latest')
+		.get(tickets.latest);
+	
 	app.route('/api/ticket')
 		// CREATE
 		.post(tickets.create)

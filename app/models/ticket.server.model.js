@@ -27,7 +27,8 @@ var TicketSchema = new Schema({
 			network_id : String
 		},
 		answers : {type: Schema.Types.Mixed, ref: 'Answer'}
-	}]
+	}],
+	created_at : Date
 });
 
 var ServerSchema = new Schema({

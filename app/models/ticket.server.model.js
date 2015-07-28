@@ -28,7 +28,10 @@ var TicketSchema = new Schema({
 		},
 		answers : {type: Schema.Types.Mixed, ref: 'Answer'}
 	}],
-	created_at : Date
+	created_at : {
+		type: Date,
+		default : Date.now
+	}
 });
 
 var ServerSchema = new Schema({

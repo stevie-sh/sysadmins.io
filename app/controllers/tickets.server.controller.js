@@ -10,7 +10,6 @@ exports.latest = function(req, res) {
 			function(err, ticket) {
 				res.json(ticket);
 			});
-
 };
 
 

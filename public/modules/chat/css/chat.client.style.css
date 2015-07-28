@@ -1,15 +1,87 @@
-html{
-    margin: 0;
-    height: 100%;
-    overflow: hidden;
+.service{
+	background:#323334;
+	width:200px;
+	height:150px;
+	border-radius: 4px;
+	margin-top:20px;
 }
-iframe{
-    position: absolute;
-    width:100%;
-    height:100%;
-    left:0;
-    right:0;
-    bottom:0;
-    top:0;
-    border:0;
+.invis{
+	background:transparent;
+	width:200px;
+	height:150px;
+	border-radius: 4px;
+}
+.service.focus{
+	background-color:#cc2e2e;
+
+}
+.aws{
+	width:100%;
+	height:150px;
+	background-image:url('../../../assets/os/aws.png');
+	background-repeat: no-repeat;
+	background-size:75px 75px;
+	background-position: center center;
+	opacity:.5;
+		transition: all .3s;
+}
+.digiocean{
+	width:100%;
+	height:150px;
+	background-image:url('../../../assets/os/digiocean.png');
+	background-repeat: no-repeat;
+	background-size:75px 75px;
+	background-position: center center;
+	opacity:.5;
+		transition: all .3s;
+}
+.gapp{
+	width:100%;
+	height:150px;
+	background-image:url('../../../assets/os/appengine.png');
+	background-repeat: no-repeat;
+	background-size:75px 75px;
+	background-position: center center;
+	opacity:.5;
+		transition: all .3s;
+}
+.linode{
+	width:100%;
+	height:150px;
+	background-image:url('../../../assets/os/linode.png');
+	background-repeat: no-repeat;
+	background-size:75px 75px;
+	background-position: center center;
+	opacity:.5;
+		transition: all .3s;
+}
+.rack{
+	width:100%;
+	height:150px;
+	background-image:url('../../../assets/os/rack.png');
+	background-repeat: no-repeat;
+	background-size:75px 75px;
+	background-position: center center;
+	opacity:.5;
+		transition: all .3s;
+}
+.mt{
+	width:100%;
+	height:150px;
+	background-image:url('../../../assets/os/mt.png');
+	background-repeat: no-repeat;
+	background-size:75px 75px;
+	background-position: center center;
+	opacity:.5;
+	transition: all .3s;
+}
+.focus .aws,.focus .digiocean, .focus .mt, .focus .rack ,.focus .linode, .focus .gapp {
+	opacity:1;
+}
+.digiocean:hover, .mt:hover, .rack:hover , .linode:hover, .gapp:hover {
+	opacity:.75;
+	transition: all .3s;
+}
+.space{
+  padding:25px 0px;
 }

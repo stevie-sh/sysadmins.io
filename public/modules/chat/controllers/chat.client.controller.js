@@ -8,6 +8,8 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', '$ht
 			$scope.submitTicket = function () {
 				console.log("Submit Clicked");
 				console.log($scope.ticket);
+				$scope.ticket.user = $scope.authentication.user;	
+
 
 				var req = {
 					method: 'POST',
@@ -22,11 +24,11 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', '$ht
 					console.log("SUCCESS!");
 				}).error(function () { return console.log("FAIL!");});
 
-				req = {
-					mthod: 'POST',
-					url: '/api/sendmail'
-				};
-				$http(req);
+				// req = {
+				// 	mthod: 'POST',
+				// 	url: '/api/sendmail'
+				// };
+				// $http(req);
 			};
 
 

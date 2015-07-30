@@ -11,7 +11,7 @@ var mongoose = require('mongoose'),
  */
 var TicketSchema = new Schema({
 	server : { type: Schema.Types.Mixed, ref:'Server' },
-	//User : { type: Schema.Types.ObjectId, ref:'User' },	
+	user : { type: Schema.Types.Mixed, ref:'User' },	
 	//questions : [{type: Schema.Types.Mixed, ref: 'Question'}],
 	// responses : [{
 	// 	id : Number,
@@ -28,8 +28,8 @@ var TicketSchema = new Schema({
 	// 	},
 	// 	answers : {type: Schema.Types.Mixed, ref: 'Answer'}
 	// }],
-	HostingService : String,
-	Problem : String,	
+	hostingService : String,
+	problem : String,	
 	created_at : Date
 });
 

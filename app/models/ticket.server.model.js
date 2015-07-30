@@ -10,24 +10,24 @@ var mongoose = require('mongoose'),
  * Ticket Schema
  */
 var TicketSchema = new Schema({
-	server : { type: Schema.Types.ObjectId, ref:'Server' },
+	server : { type: Schema.Types.Mixed, ref:'Server' },
 	//User : { type: Schema.Types.ObjectId, ref:'User' },	
-	questions : [{type: Schema.Types.Mixed, ref: 'Question'}],
-	responses : [{
-		id : Number,
-		completed : Boolean,
-		token : String,
-		metadata : {
-			browser : String,
-			platform : String,
-			date_land : Date,
-			date_submit : Date,
-			user_agent : String,
-			referrer : String,
-			network_id : String
-		},
-		answers : {type: Schema.Types.Mixed, ref: 'Answer'}
-	}],
+	//questions : [{type: Schema.Types.Mixed, ref: 'Question'}],
+	// responses : [{
+	// 	id : Number,
+	// 	completed : Boolean,
+	// 	token : String,
+	// 	metadata : {
+	// 		browser : String,
+	// 		platform : String,
+	// 		date_land : Date,
+	// 		date_submit : Date,
+	// 		user_agent : String,
+	// 		referrer : String,
+	// 		network_id : String
+	// 	},
+	// 	answers : {type: Schema.Types.Mixed, ref: 'Answer'}
+	// }],
 	HostingService : String,
 	Problem : String,	
 	created_at : Date

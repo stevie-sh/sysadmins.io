@@ -5,7 +5,8 @@ angular.module('chat')
             function ($stateProvider, $urlRouterProvider) {
                 $stateProvider.state('chat', {
                         url: '/chat',
-                        templateUrl: '/modules/chat/views/chat.client.view.html'
+                        templateUrl: 'modules/chat/views/chat.client.view.html',
+												controller: 'ChatController'
                 }).state('signout', {
 										url: '/',
 										templateUrl: 'modules/core/views/home.client.view.html'

@@ -1,9 +1,14 @@
 'use strict';
 
-angular.module('chat').controller('ChatController', ['$scope', '$location', 'Authentication', 'Menus',
-	function($scope, $location, Authentication, Menus) {
+angular.module('chat').controller('ChatController', ['$scope', '$location', 'Authentication', 'Menus','TicketFactory', 
+	function($scope, $location, Authentication, Menus, Tickets) {
 		$scope.authentication = Authentication;
-		$scope.isCollapsed = true;
+		$scope.isCollapsed = true;	
+
+		$scope.submitTicket = function () {
+			console.log("Submit Clicked");
+			console.log($scope.ticket);
+		};
 
 		//show the menu bar again...
 		$scope.$parent.menubarVisible = false;

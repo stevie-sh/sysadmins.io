@@ -228,7 +228,7 @@ h2{
 	transiton: all .3s;
 	opacity:.75;
 }
-.focus .ubuntu, .focus .windows, .focus .centos{
+.focusfix:checked + .rop{
 	opacity:1;
 }
 .padding{

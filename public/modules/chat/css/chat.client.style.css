@@ -120,3 +120,33 @@
 .service-contain p{
 	padding:10px;
 }
+.testing .rop{
+	background:#323334;
+	width:300px;
+	height:200px;
+	border-radius: 4px;
+	padding:0px;
+}
+.testing input[type=radio]{
+    display:none;
+}
+.testing input[type=radio]:checked + .rop{
+	background-color:#2ECC71;
+}
+.sadmin .serv{
+	background:#323334;
+	width:200px;
+	height:150px;
+	border-radius: 4px;
+	padding:0px;
+}
+.sadmin input[type=radio]{
+    display:none;
+}
+.sadmin input[type=radio]:checked + .serv{
+	background-color:#cc2e2e;
+}
+.invisa{
+	width:300px;
+	height:200px;
+}

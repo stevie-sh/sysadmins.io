@@ -7,11 +7,10 @@ var mongoose = require('mongoose'),
 
 var nodemailer = require('nodemailer');
 var ses = require('nodemailer-ses-transport');
-var smtpTransport = require('nodemailer-smtp-transport');
 
 var transporter = nodemailer.createTransport(ses({
-	accessKeyId: '',
-	secretAccessKey: ''
+	accessKeyId: process.env.ACCESS_KEY_ID, 
+	secretAccessKey: process.env.SECRET_ACCESS_KEY 
 }));
 
 exports.sendEmail = function(req, res) {

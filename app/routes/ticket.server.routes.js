@@ -5,9 +5,9 @@ var tickets = require('../../app/controllers/tickets.server.controller'),
 
 
 module.exports = function(app) {
-//	app.route('/api/sendmail')
-//		.get(tickets.sendEmail);
-//
+	app.route('/api/sendmail')
+		.post(tickets.sendEmail);
+
 	app.route('/api/ticket/latest')
 		.get(users.requiresLogin, tickets.latest);
 	

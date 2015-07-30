@@ -17,15 +17,16 @@ exports.sendEmail = function(req, res) {
 	transporter.sendMail({
 		from: 'rivanov@sysadmins.io',
 		to: 'rivanov@gmail.com',
-		subject: 'hello',
-		text: 'hello world!'}, function(error, responseStatus){
-			if (error)
-				console.log(error);		
-			else{
-				console.log(responseStatus.message); // response from the server
-				console.log(responseStatus.messageId); // Message-ID value used
-			}
-		});
+		subject: 'New ticket created',
+		html: req.body.ticketHTML
+	}, function(error, responseStatus){
+		if (error)
+			console.log(error);		
+		else{
+			console.log(responseStatus.message); // response from the server
+			console.log(responseStatus.messageId); // Message-ID value used
+		}
+	});
 
 
 	res.status(200).send();

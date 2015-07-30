@@ -1,5 +1,5 @@
 .content {
-	margin-top: 132px;
+	margin-top: 101px;
 }
 .undecorated-link:hover {
 	text-decoration: none;
@@ -38,8 +38,6 @@ h1{
 .navbar-default.mymenu{
     background-color:#ffffff;
     border-color: #ffffff;
-    padding-top: 30px;
-    margin-bottom: 50px;
 }
 
 .navbar-brand.mylogo {
@@ -260,3 +258,6 @@ h2{
 			display: none;
 		}
 	}
+.nav.navbar-nav.navbar-right{
+	padding-top:25px;
+}

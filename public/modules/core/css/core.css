@@ -1,5 +1,5 @@
 .content {
-	margin-top: 100px;
+	margin-top: 101px;
 }
 .undecorated-link:hover {
 	text-decoration: none;
@@ -258,3 +258,6 @@ h2{
 			display: none;
 		}
 	}
+.nav.navbar-nav.navbar-right{
+	padding-top:25px;
+}

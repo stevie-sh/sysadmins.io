@@ -1,9 +1,12 @@
 'use strict';
 
+var tickets = require('../../app/controllers/tickets.server.controller');
+
 var mongoose = require('mongoose'),
 		errorHandler = require('./errors.server.controller'),
 		Ticket = mongoose.model('Ticket'),
-		_ = require('lodash');
+		_ = require('lodash'),
+		chalk = require('chalk');
 
 var nodemailer = require('nodemailer');
 var ses = require('nodemailer-ses-transport');
@@ -41,13 +44,35 @@ exports.latest = function(req, res) {
 };
 
 
+exports.tryParseJSON = function (ticket) {
+	if (!ticket) {
+		return null;
+	}
+	else
+	{
+		try {
+			return JSON.parse(JSON.stringify(ticket));
+		}
+		catch (e) {
+			console.log(chalk.red(e));
+			return undefined;	
+		}	
+	}
+};
+
 exports.create = function(req, res) {
-	console.log(req.body.ticket);	
-	var ticket = new Ticket(req.body.ticket);
-	ticket.save(function(err){
-		if (err) res.send(err);
-		res.status(201).json({ message: 'Ticket Successfully Created' });
-	});
+	var ticketJSON = req.body.ticket;
+
+	if (tickets.tryParseJSON(ticketJSON)) {
+		var ticket = new Ticket(ticketJSON);
+		ticket.save(function(err){
+			if (err) res.send(err);
+			res.status(201).json({ message: 'Ticket Successfully Created' });
+		});
+	}
+	else {
+		res.status(500).json({ message: 'Ticket Creation Failed due to invalid JSON' });	
+	}
 };
 
 exports.read = function(req, res) {

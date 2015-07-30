@@ -3,7 +3,7 @@
 angular.module('chat').controller('ChatController', ['$scope', '$location', '$http', 'Authentication', 'Menus','TicketFactory', 
 		function($scope, $location, $http, Authentication, Menus, Tickets) {
 			$scope.authentication = Authentication;
-			$scope.isCollapsed = true;	
+			$scope.isCollapsed = false;	
 
 			$scope.submitTicket = function () {
 				console.log("Submit Clicked");
@@ -43,9 +43,9 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', '$ht
 
 
 			//show the menu bar again...
-			$scope.$parent.menubarVisible = false;
-			$scope.$on('$stateChangeSuccess', function () {
-				//$scope.$parent.menubarVisible = false;
-			});
+			// $scope.$parent.menubarVisible = false;
+			// $scope.$on('$stateChangeSuccess', function () {
+			// 	//$scope.$parent.menubarVisible = false;
+			// });
 		}
 ]);

@@ -5,44 +5,90 @@
     <title>Incident Report</title>
 </head>
 <body>
-  <form class="form-horizontal">
-    <div class="form-group">
-      <label for="inputServer" class="col-sm-2 control-label">Server Name</label>
+  <form class="form-horizontal" ng-submit="submitTicket()">
+    <div class="form-group space">
+      <h2 class="col-sm-2">Server Name</h2>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputServer" placeholder="North American Server">
+        <input type="text" class="form-control" id="inputServer" placeholder="North American Server" ng-model="ticket.server.name">
       </div>
     </div>
-    <div class="form-group">
-      <label for="optionsRadios" class="col-sm-2 control-label">Operating System</label>
-      <div class="col-sm-10">
+    <div class="form-group space">
+      <h2 class="col-sm-2">Operating System</h2>
+      <div class="col-sm-10 testing">
         <div class="flex">
-          <div class="server focus"><div class="os ubuntu"></div></div>
-          <div class="server test"><div class="os windows"></div></div>
-          <div class="server"><div class="os centos"></div></div>
+        <div class="radio">
+          <input type="radio" name="operating" value="Ubuntu" class="focusfix" id="ubuntu" checked="checked" ng-model="ticket.server.OS">
+          <label class="rop" for="ubuntu"><div class="ubuntu"></div></label>
+          <p>Ubuntu</p>
+        </div>
+        <div class="radio">
+          <input type="radio" name="operating" value="Windows" class="focusfix" id="wind" ng-model="ticket.server.OS">
+          <label class="rop" for="wind"><div class="windows"></div></label>
+          <p>Windows</p>
+        </div>
+        <div class="radio">
+          <input type="radio" name="operating" value="CentOS" class="focusfix" id="cent" ng-model="ticket.server.OS">
+          <label class="rop" for="cent"><div class="centos"></div></label>
+          <p>CentOS</p>
+        </div>
+        <div class="radio">
+          <input type="radio" name="operating" value="RedHat" class="focusfix" id="red" ng-model="ticket.server.OS">
+          <label class="rop" for="red"><div class="redhat"></div></label>
+          <p>RedHat</p>
+        </div>
+        <div class="invisa"></div>
+        <div class="invisa"></div>
         </div>
       </div>
     </div>
-    <div class="form-group">
-      <label for="serviceSelect" class="col-sm-2 control-label">Services</label>
-      <div  class="col-sm-10">
+    <div class="form-group space">
+      <h2 class="col-sm-2">Hosting Service</h2>
+      <div  class="col-sm-10 sadmin">
         <div class="flex">
-          <div class="service focus"><div class="aws"></div></div>
-          <div class="service"><div class="digiocean"></div></div>
-          <div class="service"><div class="gapp"></div></div>
-          <div class="service"><div class="linode"></div></div>
-          <div class="service"><div class="rack"></div></div>
-          <div class="service"><div class="mt"></div></div>
-          <div class="invis"></div><div class="invis"></div>
+        <div class="radio">
+          <input type="radio" checked="checked" name="service" value="AWS" id="aws" ng-model="ticket.HostingService">
+          <label class="serv" for="aws"><div class="aws"></div></label>
+          <p>AWS</p>
         </div>
+        <div class="radio">
+          <input type="radio" name="service" value="DigitalOcean" id="digo" ng-model="ticket.HostingService">
+          <label class="serv" for="digo"><div class="digiocean"></div></label>
+          <p>Digital Ocean</p>
+        </div>
+        <div class="radio">
+          <input type="radio" name="service" value="Google" id="goog" ng-model="ticket.HostingService">
+          <label class="serv" for="goog"><div class="gapp"></div></label>
+          <p>Google App</p>
+        </div>
+        <div class="radio">
+          <input type="radio" name="service" value="Linode" id="lino" ng-model="ticket.HostingService">
+          <label class="serv" for="lino"><div class="linode"></div></label>
+          <p>Linode</p>
+        </div>
+        <div class="radio">
+          <input type="radio" name="service" value="Rackspace" id="rack" ng-model="ticket.HostingService">
+          <label class="serv" for="rack"><div class="rack"></div></label>
+          <p>Rackspace</p>
+        </div>
+        <div class="radio">
+          <input type="radio" name="service" value="MediaTemple" id="medte" ng-model="ticket.HostingService">
+          <label class="serv" for="medte"><div class="mt"></div></label>
+          <p>MediaTemple</p>
+        </div>
+        <div class="invis"></div>
+        <div class="invis"></div>
+      </div>
+      </div>
+      </div>
       </div>
     </div>
-    <div class="form-group">
-      <label for="problem" class="col-sm-2 control-label">What's your Problem?</label>
+    <div class="form-group space">
+      <h2 class="col-sm-2">What's the problem?</h2>
       <div  class="col-sm-10">
-        <textarea class="form-control" name="problem" rows="3"></textarea>
+        <textarea class="form-control" name="problem" rows="5" placeholder="Please be specific" ng-model="ticket.Problem"></textarea>
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group space">
       <div class="col-sm-offset-2 col-sm-10">
         <button type="submit" class="btn btn-success">Submit Ticket</button>
       </div>

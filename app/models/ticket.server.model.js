@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
  * Ticket Schema
  */
 var TicketSchema = new Schema({
-	//server : { type: Schema.Types.ObjectId, ref:'Server' },
+	server : { type: Schema.Types.ObjectId, ref:'Server' },
 	//User : { type: Schema.Types.ObjectId, ref:'User' },	
 	questions : [{type: Schema.Types.Mixed, ref: 'Question'}],
 	responses : [{
@@ -28,13 +28,15 @@ var TicketSchema = new Schema({
 		},
 		answers : {type: Schema.Types.Mixed, ref: 'Answer'}
 	}],
+	HostingService : String,
+	Problem : String,	
 	created_at : Date
 });
 
 var ServerSchema = new Schema({
-	Name : String,
-	OS : String
-});
+	name : String,
+	OS : String,
+  });
 
 var QuestionSchema = new Schema({
 	id : String,

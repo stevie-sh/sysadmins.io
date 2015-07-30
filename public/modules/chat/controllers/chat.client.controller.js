@@ -7,7 +7,7 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', 'Aut
 
 		//show the menu bar again...
 		$scope.$parent.menubarVisible = false;
-		$scope.$on('$stateChangeSuccess', function () {	
+		$scope.$on('$stateChangeSuccess', function () {
 			//$scope.$parent.menubarVisible = false;
 		});
 	}

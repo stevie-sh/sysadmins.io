@@ -15,25 +15,42 @@
     <div class="form-group space">
       <h2 class="col-sm-2">Operating System</h2>
       <div class="col-sm-10">
-        <div class="flex">
-          <div class="server" ng-class="ubuntu"><div class="os ubuntu" ng-click="ubuntu='focus'"></div></div>
-          <div class="server" ng-class="windows"><div class="os windows" ng-click="windows='focus'"></div></div>
-          <div class="server" ng-class="centos"><div class="os centos" ng-click="centos='focus'"></div></div>
+        <div class="radio">
+          <label><input type="radio" name="operating">Ubuntu</label>
+        </div>
+        <div class="radio">
+          <label><input type="radio" name="operating">Windows</label>
+        </div>
+        <div class="radio">
+          <label><input type="radio" name="operating">CentOS</label>
+        </div>
+        <div class="radio">
+          <label><input type="radio" name="operating">RedHat</label>
+        </div>
         </div>
       </div>
-    </div>
     <div class="form-group space">
       <h2 class="col-sm-2">Hosting Service</h2>
       <div  class="col-sm-10">
-        <div class="flex">
-          <div class="service" ng-class="aws"><div class="aws" ng-click="aws='focus'"></div></div>
-          <div class="service" ng-class="do"><div class="digiocean" ng-click="do='focus'"></div></div>
-          <div class="service" ng-class="gapp"><div class="gapp" ng-click="gapp='focus'"></div></div>
-          <div class="service" ng-class="linode"><div class="linode" ng-click="linode='focus'"></div></div>
-          <div class="service" ng-class="rack"><div class="rack" ng-click="rack='focus'"></div></div>
-          <div class="service" ng-class="mt"><div class="mt" ng-click="mt='focus'"></div></div>
-          <div class="invis"></div><div class="invis"></div>
+        <div class="radio">
+          <label><input type="radio" name="optradio">AWS</label>
         </div>
+        <div class="radio">
+          <label><input type="radio" name="optradio">Digital Ocean</label>
+        </div>
+        <div class="radio">
+          <label><input type="radio" name="optradio">Google App Engine</label>
+        </div>
+        <div class="radio">
+          <label><input type="radio" name="optradio">Linode</label>
+        </div>
+        <div class="radio">
+          <label><input type="radio" name="optradio">Rackspace</label>
+        </div>
+        <div class="radio">
+          <label><input type="radio" name="optradio">Media Temple</label>
+        </div>
+      </div>
       </div>
     </div>
     <div class="form-group space">

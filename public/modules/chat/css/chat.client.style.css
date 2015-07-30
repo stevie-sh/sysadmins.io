@@ -85,3 +85,38 @@
 .space{
   padding:25px 0px;
 }
+.os, .service{
+	position: relative;
+}
+.os p{
+	display: inline-block;
+	position: absolute;
+	bottom:7px;
+	left:50%;
+	color:white;
+	font-weight: 400;
+	transform: translateX(-50%);
+}
+.service p{
+	display: inline-block;
+	position: absolute;
+	bottom:7px;
+	left:50%;
+	color:white;
+	font-weight: 400;
+	transform: translateX(-50%);
+}
+.server-contain{
+	width:300px;
+	text-align:center;
+}
+.server-contain p{
+	padding-top:15px;
+}
+.service-contain{
+	width:200px;
+	text-align:center;
+}
+.service-contain p{
+	padding:10px;
+}

@@ -16,9 +16,18 @@
       <h2 class="col-sm-2">Operating System</h2>
       <div class="col-sm-10">
         <div class="flex">
-          <div class="server" ng-class="ubuntu"><div class="os ubuntu" ng-click="ubuntu='focus'"></div></div>
-          <div class="server" ng-class="windows"><div class="os windows" ng-click="windows='focus'"></div></div>
-          <div class="server" ng-class="centos"><div class="os centos" ng-click="centos='focus'"></div></div>
+          <div class="server-contain">
+            <div class="server" ng-class="ubuntu"><div class="os ubuntu" ng-click="ubuntu='focus'"></div></div>
+            <p>Ubuntu</p>
+          </div>
+          <div class="server-contain">
+            <div class="server" ng-class="windows"><div class="os windows" ng-click="windows='focus'"></div></div>
+            <p>Windows</p>
+          </div>
+          <div class="server-contain">
+            <div class="server" ng-class="centos"><div class="os centos" ng-click="centos='focus'"></div></div>
+            <p>CentOS</p>
+          </div>
         </div>
       </div>
     </div>
@@ -26,12 +35,30 @@
       <h2 class="col-sm-2">Hosting Service</h2>
       <div  class="col-sm-10">
         <div class="flex">
-          <div class="service" ng-class="aws"><div class="aws" ng-click="aws='focus'"></div></div>
-          <div class="service" ng-class="do"><div class="digiocean" ng-click="do='focus'"></div></div>
-          <div class="service" ng-class="gapp"><div class="gapp" ng-click="gapp='focus'"></div></div>
-          <div class="service" ng-class="linode"><div class="linode" ng-click="linode='focus'"></div></div>
-          <div class="service" ng-class="rack"><div class="rack" ng-click="rack='focus'"></div></div>
-          <div class="service" ng-class="mt"><div class="mt" ng-click="mt='focus'"></div></div>
+          <div class="service-contain">
+            <div class="service" ng-class="aws"><div class="aws" ng-click="aws='focus'"></div></div>
+            <p>AWS</p>
+          </div>
+          <div class="service-contain">
+            <div class="service" ng-class="do"><div class="digiocean" ng-click="do='focus'"></div></div>
+            <p>Digital Ocean</p>
+          </div>
+          <div class="service-contain">
+            <div class="service" ng-class="gapp"><div class="gapp" ng-click="gapp='focus'"></div></div>
+            <p>Google App Engine</p>
+          </div>
+          <div class="service-contain">
+            <div class="service" ng-class="linode"><div class="linode" ng-click="linode='focus'"></div></div>
+            <p>Linode</p>
+          </div>
+          <div class="service-contain">
+            <div class="service" ng-class="rack"><div class="rack"  ng-class="rack ? 'focus' : ''"></div></div>
+            <p>Rackspace</p>
+          </div>
+          <div class="service-contain">
+            <div class="service" ng-class="mt"><div class="mt" ng-click="mt='focus'"></div></div>
+            <p>MediaTemple</p>
+          </div>
           <div class="invis"></div><div class="invis"></div>
         </div>
       </div>

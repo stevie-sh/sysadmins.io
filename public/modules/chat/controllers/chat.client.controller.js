@@ -8,6 +8,7 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', '$ht
 			$scope.submitTicket = function () {
 				console.log("Submit Clicked");
 				console.log($scope.ticket);
+				var ticket = $scope.ticket;
 
 				var req = {
 					method: 'POST',
@@ -15,20 +16,28 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', '$ht
 					headers: {
 						'Content-Type': 'application/json; charset=UTF-8'
 					},
-					data: { ticket: $scope.ticket  }
+					data: { ticket: ticket }
 				};
 
 				$http(req).success(function () {
 					console.log("SUCCESS!");
+
+					var ticketHTML = "<h2>Server Name: " + ticket.server.name + "</h2>"
+					+ "<h3>Operating System: " + ticket.server.OS + "</h3>"
+					+ "<h3>Hosting Service: " + ticket.HostingService + "</h3>"
+					+ "<p>Problem: " + ticket.Problem + "</p>";
+
+					req = {
+						method: 'POST',
+						url: '/api/sendmail',
+						headers: {
+							'Content-Type': 'application/json; charset=UTF-8'
+						},
+						data: { ticketHTML: ticketHTML }
+					};
+					$http(req);
 				}).error(function () { return console.log("FAIL!");});
-
-				req = {
-					mthod: 'POST',
-					url: '/api/sendmail'
-				};
-				$http(req);
 			};
-
 
 
 			//show the menu bar again...

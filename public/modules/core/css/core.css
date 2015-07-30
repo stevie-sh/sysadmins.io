@@ -255,3 +255,8 @@ h2{
 .radio p{
 	text-align:center;
 }
+@media screen and (max-width: 1200px){
+		.invis , .invisa{
+			display: none;
+		}
+	}

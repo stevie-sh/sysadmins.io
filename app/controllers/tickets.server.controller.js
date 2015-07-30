@@ -5,12 +5,39 @@ var mongoose = require('mongoose'),
 		Ticket = mongoose.model('Ticket'),
 		_ = require('lodash');
 
+var nodemailer = require('nodemailer');
+var ses = require('nodemailer-ses-transport');
+var smtpTransport = require('nodemailer-smtp-transport');
+
+var transporter = nodemailer.createTransport(ses({
+	accessKeyId: '',
+	secretAccessKey: ''
+}));
+
+exports.sendEmail = function(req, res) {
+	transporter.sendMail({
+		from: 'rivanov@sysadmins.io',
+		to: 'rivanov@gmail.com',
+		subject: 'hello',
+		text: 'hello world!'}, function(error, responseStatus){
+			if (error)
+				console.log(error);		
+			else{
+				console.log(responseStatus.message); // response from the server
+				console.log(responseStatus.messageId); // Message-ID value used
+			}
+		});
+
+
+	res.status(200).send();
+};
+
+
 exports.latest = function(req, res) {
 	Ticket.findOne({}, {}, { sort: { 'created_at' : -1 } }, 
 			function(err, ticket) {
 				res.json(ticket);
 			});
-
 };
 
 

@@ -10,6 +10,8 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', '$ht
 				console.log($scope.ticket);
 				var ticket = $scope.ticket;
 
+				$scope.ticket.user = $scope.authentication.user;	
+
 				var req = {
 					method: 'POST',
 					url: '/api/ticket',

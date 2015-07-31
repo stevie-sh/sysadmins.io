@@ -24,6 +24,12 @@ body.ng-cloak
 h1{
 	font-weight: 300;
 }
+
+/* Override bootstrap setting color: #fff */
+.navbar-inverse .navbar-nav > li > a:focus {
+	color: #9D9D9D;
+}
+
 /* Steve's CSS */
 
 /* div that contains both classes */

@@ -26,8 +26,8 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', '$ht
 
 					var ticketHTML = "<h2>Server Name: " + ticket.server.name + "</h2>"
 					+ "<h3>Operating System: " + ticket.server.OS + "</h3>"
-					+ "<h3>Hosting Service: " + ticket.HostingService + "</h3>"
-					+ "<p>Problem: " + ticket.Problem + "</p>";
+					+ "<h3>Hosting Service: " + ticket.hostingService + "</h3>"
+					+ "<p>Problem: " + ticket.problem + "</p>";
 
 					req = {
 						method: 'POST',

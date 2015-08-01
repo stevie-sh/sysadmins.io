@@ -29,7 +29,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 			$http.post('/auth/signin', $scope.credentials).success(function(response) {
 				// If successful we assign the response to the global user model
 				$scope.authentication.user = response;
-        console.log('authentication-controller: ' + $scope.authentication.user.email);
+				console.log('authentication-controller: ' + $scope.authentication.user.email);
 
 				// And redirect to the index page
         $state.go('chat');

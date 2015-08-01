@@ -18,8 +18,8 @@ var transporter = nodemailer.createTransport(ses({
 
 exports.sendEmail = function(req, res) {
 	transporter.sendMail({
-		from: 'rivanov@sysadmins.io',
-		to: 'rivanov@gmail.com',
+		from: process.env.MAIL_FROM, 
+		to: process.env.MAIL_TO, 
 		subject: 'New ticket created',
 		html: req.body.ticketHTML
 	}, function(error, responseStatus){

@@ -1,4 +1,4 @@
-# iOS / Apple
+OS / Apple
 # ===========
 .DS_Store
 ehthumbs.db
@@ -60,4 +60,4 @@ mongod
 *.bak
 *.swp
 logs/
-build/
+Build/

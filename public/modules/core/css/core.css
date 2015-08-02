@@ -42,12 +42,12 @@ h1{
 }
 
 .navbar-default.mymenu{
-    background-color:#ffffff;
+    background-color:#fff;
     border-color: #ffffff;
 }
 
 .navbar-brand.mylogo {
-    background:url("../../../assets/onlylogo.svg");
+    background:url('../../../assets/logos/onlylogo.svg');
     background-size: 100px 100px;
     width: 100px;
     height: 100px;

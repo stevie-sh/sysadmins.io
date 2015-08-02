@@ -1,10 +1,16 @@
 'use strict';
 
 angular.module('chatApp')
-.controller('SocketCtrl', 
-		function ($log, $scope, chatSocket, 
-			messageFormatter, nickName) {
-			$scope.nickName = nickName;
+.controller('SocketCtrl',['$log','$scope','$http', 'chatSocket', 'messageFormatter', 
+		function ($log, $scope, $http, chatSocket, messageFormatter) {
+			var nickName = 'anonymous'; 
+			$http.get('/users/me').then(function (response)
+					 {
+						 var email = response.data.email;
+							// Set the nickname to the username
+							nickName = email.substring(0, email.indexOf('@'));
+							$scope.nickName = nickName;
+					 });
 			$scope.messageLog = 'Ready to chat!\n';
 			$scope.sendMessage = function() {
 				var match = $scope.message.match('^\/nick (.*)');
@@ -39,4 +45,4 @@ angular.module('chatApp')
 							data.payload);
 				});
 			});
-		});  // end of controller
+		}]);  // end of controller

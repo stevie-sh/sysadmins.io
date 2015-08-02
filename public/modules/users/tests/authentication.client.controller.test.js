@@ -39,6 +39,9 @@
 			$httpBackend = _$httpBackend_;
 			$location = _$location_;
 
+      // Expect arbitrary requests to routes with 'views' somewhere in them
+      $httpBackend.when('GET', /.+\/views\/.+/).respond(200);
+
 			// Initialize the Authentication controller
 			AuthenticationController = $controller('AuthenticationController', {
 				$scope: scope
@@ -55,7 +58,7 @@
 
 			// Test scope value
 			expect(scope.authentication.user).toEqual('Fred');
-			expect($location.url()).toEqual('/');
+			expect($location.url()).toEqual('/chat');
 		});
 
 		it('$scope.signin() should fail to log in with nothing', function() {
@@ -98,7 +101,7 @@
 
 			// test scope value
 			expect(scope.authentication.user).toBe('Fred');
-			expect(scope.error).toEqual(undefined);
+			expect(scope.error).toBeDefined();
 			expect($location.url()).toBe('/');
 		});
 

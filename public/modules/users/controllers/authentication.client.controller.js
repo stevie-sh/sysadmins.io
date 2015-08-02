@@ -21,10 +21,8 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 				// And redirect to the index page
 				$state.go('home');
 			}).error(function(response) {
-				if ((response.message === 'Password should be longer') && ($scope.userForm.email.$viewValue === undefined))
-					response.message = 'Please fill in your email';
 				$scope.error = response.message;
-});
+			});
 		};
 
 		$scope.signin = function() {

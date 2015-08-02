@@ -3,11 +3,11 @@
  * Module dependencies.
  */
 var init = require('./config/init')(),
-	config = require('./config/config'),
-	mongoose = require('mongoose'),
-	chalk = require('chalk');
+		config = require('./config/config'),
+		mongoose = require('mongoose'),
+		chalk = require('chalk');
 
-    
+
 
 /**
  * Main application entry file.
@@ -24,7 +24,7 @@ var db = mongoose.connect(config.db.uri, config.db.options, function(err) {
 mongoose.connection.on('error', function(err) {
 	console.error(chalk.red('MongoDB connection error: ' + err));
 	process.exit(-1);
-	}
+}
 );
 
 // Init the express application
@@ -32,18 +32,25 @@ var app = require('./config/express')(db);
 
 
 /* socket.io chat */
-var server = require('http').Server(app),
-    io = require('socket.io')(server); //attaching itself to the http server process
+var io = require('socket.io'),
+		http = require('http'),
+		server = http.createServer(app),
+		io = io.listen(server);
 
+io.on('connection', function (socket) {
+	socket.on('message', function (from, msg) {
 
-//sockets
-io.on('connection', function(sock){
-    console.log('socket connected!');
+		console.log('recieved message from', 
+				from, 'msg', JSON.stringify(msg));
 
-    sock.on('chat', function(data){
-        console.log('chat message rcvd: ', data.message);
-        io.emit('myEvent', { foo: 'bar' });
-    });
+		console.log('broadcasting message');
+		console.log('payload is', msg);
+		io.sockets.emit('broadcast', {
+			payload: msg,
+			source: from
+		});
+		console.log('broadcast complete');
+	});
 });
 
 // Bootstrap passport config
@@ -56,7 +63,7 @@ require('./config/passport')();
 // start app
 //app.listen(app.get('port')); //this breaks socket.io
 server.listen(config.port, function(){
-    console.log('Listening on http://localhost:%d', config.port);
+	console.log('Listening on http://localhost:%d', config.port);
 });
 
 

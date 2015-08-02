@@ -5,7 +5,7 @@ angular.module('chatApp')
 		function ($log, $scope, chatSocket, 
 			messageFormatter, nickName) {
 			$scope.nickName = nickName;
-			$scope.messageLog = 'Ready to chat!';
+			$scope.messageLog = 'Ready to chat!\n';
 			$scope.sendMessage = function() {
 				var match = $scope.message.match('^\/nick (.*)');
 
@@ -34,9 +34,9 @@ angular.module('chatApp')
 					return;
 				} 
 				$scope.$apply(function() {
-					$scope.messageLog = messageFormatter(
+					$scope.messageLog = $scope.messageLog + messageFormatter(
 							new Date(), data.source, 
-							data.payload) + $scope.messageLog;
+							data.payload);
 				});
 			});
 		});  // end of controller

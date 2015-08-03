@@ -23,7 +23,7 @@ angular.module('chatApp')
 				}
 
 				$log.debug('sending message', $scope.message);
-				chatSocket.emit('message', nickName, $scope.message);
+				chatSocket.emit('message', nickName, Authentication.user, $scope.message);
 				$log.debug('message sent', $scope.message);
 				$scope.message = '';
 			};

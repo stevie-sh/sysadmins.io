@@ -35,7 +35,9 @@ var app = require('./config/express')(db);
 var io = require('socket.io'),
 		http = require('http'),
 		server = http.createServer(app),
-		io = io.listen(server);
+		io = io.listen(server),
+		chat = require('./app/controllers/chat.server.controller'),
+		user = require('./app/controllers/users/users.profile.server.controller');
 
 io.on('connection', function (socket) {
 	socket.on('message', function (from, msg) {
@@ -45,6 +47,11 @@ io.on('connection', function (socket) {
 
 		console.log('broadcasting message');
 		console.log('payload is', msg);
+		chat.createMessage({
+			User: user.me,
+			Text: msg,
+			Timestamp: Date.now()
+		});	
 		io.sockets.emit('broadcast', {
 			payload: msg,
 			source: from

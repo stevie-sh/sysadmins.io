@@ -38,17 +38,21 @@ var io = require('socket.io'),
 		io = io.listen(server),
 		chat = require('./app/controllers/chat.server.controller'),
 		user = require('./app/controllers/users/users.profile.server.controller');
+		var Client = require('node-rest-client').Client,
+		client = new Client();
 
 io.on('connection', function (socket) {
-	socket.on('message', function (from, msg) {
+	socket.on('message', function (from, user, msg) {
 
 		console.log('recieved message from', 
 				from, 'msg', JSON.stringify(msg));
 
 		console.log('broadcasting message');
 		console.log('payload is', msg);
+		
+	
 		chat.createMessage({
-			User: user.me,
+			User: user,
 			Text: msg,
 			Timestamp: Date.now()
 		});	

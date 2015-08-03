@@ -38,8 +38,6 @@ var io = require('socket.io'),
 		io = io.listen(server),
 		chat = require('./app/controllers/chat.server.controller'),
 		user = require('./app/controllers/users/users.profile.server.controller');
-		var Client = require('node-rest-client').Client,
-		client = new Client();
 
 io.on('connection', function (socket) {
 	socket.on('message', function (from, user, msg) {

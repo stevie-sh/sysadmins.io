@@ -12,6 +12,16 @@ exports.index = function (req, res) {
     });
 };
 
+exports.postMessage = function (req, res) {
+	if (req.body) {
+		var message = new Message(req.body);
+		message.save(function(err) {
+			if (err) console.log(err);	
+			res.json(message);
+		});	
+	}
+};
+
 exports.createMessage = function (msg) {
 	var message = new Message(msg);
 	message.save(function(err) {

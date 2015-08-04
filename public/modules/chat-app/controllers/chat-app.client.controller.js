@@ -6,13 +6,17 @@ angular.module('chatApp')
 			// If no user is logged in	
 			if (!Authentication.user){
 				// We do not support chat; Ask them to signin first beofore using it	
-				$state.go("signin");
+				$state.go('signin');
 			}	
-			var emailToUserName = function (email) { return email.substring(0, email.indexOf('@')); }
+			var emailToUserName = function (email) { return email.substring(0, email.indexOf('@'));};
 
 			var email = Authentication.user.email;
 			// Get the part of the e-mail before the @ sign and set it as the user's nickName
 			var nickName = $scope.nickName = emailToUserName(email);	
+			
+			
+			$scope.messageLog = 'Ready to chat!\n';
+			// Repopulate the message log with all previous messages	
 			$http.get('/api/chat').then(function(resp) {
 
 				angular.forEach(resp.data, function(value, key) {
@@ -23,24 +27,37 @@ angular.module('chatApp')
 				});	
 			});
 
-			$scope.messageLog = 'Ready to chat!\n';
 			$scope.sendMessage = function() {
+				// Regex for matching /nick <nickname>	
 				var match = $scope.message.match('^\/nick (.*)');
-
+				// If we match, and have an array w/ len 2
 				if (angular.isDefined(match) && 
 						angular.isArray(match) && match.length === 2) {
+					// Save the old name
 					var oldNick = nickName;
+					// Set the new name	
 					nickName = match[1];
+					// Clear the send box 
 					$scope.message = '';
+					// Append to the message log
 					$scope.messageLog = $scope.messageLog + messageFormatter(new Date(), 
 							nickName, 'nickname changed - from ' + 
 							oldNick + ' to ' + nickName + '!'); 
 
+					// Set the new nickname
 					$scope.nickName = nickName;
 				}
 
 				$log.debug('sending message', $scope.message);
+				// Broadcast message to all connected users	
 				chatSocket.emit('message', nickName, Authentication.user, $scope.message);
+				
+				// Create the new message in the DB	
+				$http.post('/api/chat', {
+					User: Authentication.user,
+					Text: $scope.message,
+					Timestamp: Date.now
+				});
 				$log.debug('message sent', $scope.message);
 				$scope.message = '';
 			};

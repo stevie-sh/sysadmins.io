@@ -13,8 +13,8 @@ angular.module('chatApp')
 			var email = Authentication.user.email;
 			// Get the part of the e-mail before the @ sign and set it as the user's nickName
 			var nickName = $scope.nickName = emailToUserName(email);	
-			
-			
+
+
 			$scope.messageLog = 'Ready to chat!\n';
 			// Repopulate the message log with all previous messages	
 			$http.get('/api/chat').then(function(resp) {
@@ -48,18 +48,21 @@ angular.module('chatApp')
 					$scope.nickName = nickName;
 				}
 
-				$log.debug('sending message', $scope.message);
-				// Broadcast message to all connected users	
-				chatSocket.emit('message', nickName, Authentication.user, $scope.message);
-				
-				// Create the new message in the DB	
-				$http.post('/api/chat', {
-					User: Authentication.user,
-					Text: $scope.message,
-					Timestamp: Date.now
-				});
-				$log.debug('message sent', $scope.message);
-				$scope.message = '';
+				// If the message is not blank	
+				if ($scope.message) {
+					$log.debug('sending message', $scope.message);
+					// Broadcast message to all connected users	
+					chatSocket.emit('message', nickName, Authentication.user, $scope.message);
+
+					// Create the new message in the DB	
+					$http.post('/api/chat', {
+						User: Authentication.user,
+						Text: $scope.message,
+						Timestamp: Date.now
+					});
+					$scope.message = '';
+					$log.debug('message sent', $scope.message);
+				}
 			};
 
 			// Listen for broadcast messages

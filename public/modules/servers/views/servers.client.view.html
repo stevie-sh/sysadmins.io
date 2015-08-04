@@ -1,5 +1,5 @@
 <section ng-controller="ServersController">
-<h1>Submited Tickets</h1>
+<h1>Submitted Tickets</h1>
 <div class="flex-area">
   <div  ng-model="whatever" class="submittickets" ng-repeat="item in whatever | filter:  {user: {_id: authentication.user._id}} | orderBy: reverse">
       <h2><b>{{item.server.name}}</b></h2>

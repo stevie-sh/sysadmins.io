@@ -1,8 +1,10 @@
 <section ng-controller="ServersController">
-  <div  ng-model="whatever" ng-repeat="item in whatever | filter:  {user: {_id: authentication.user._id}}">
-    <h2><b>{{item.server.name}}</b> - {{item.server.OS}}, {{item.hostingService}}</h2>
-    <h3></h3>
-    <p></p>
-    <p>{{item.problem}}</p>
+<h1>Submitted Tickets</h1>
+<div class="flex-area">
+  <div  ng-model="whatever" class="submittickets" ng-repeat="item in whatever | filter:  {user: {_id: authentication.user._id}} | orderBy: reverse">
+      <h2><b>{{item.server.name}}</b></h2>
+      <h2>{{item.server.OS}}, {{item.hostingService}}</h2>
+      <p>{{item.problem}}</p>
   </div>
+ </div>
 </section>

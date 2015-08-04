@@ -5,8 +5,7 @@ angular.module('chatApp')
             function ($stateProvider, $urlRouterProvider) {
                 $stateProvider.state('chatApp', {
                         url: '/chatApp',
-                        templateUrl: 'modules/chat-app/views/chat-app.client.view.html',
-												controller: 'SocketCtrl'
+                        templateUrl: 'modules/chat-app/views/chat-app.client.view.html'
 												});
 						}]);
  

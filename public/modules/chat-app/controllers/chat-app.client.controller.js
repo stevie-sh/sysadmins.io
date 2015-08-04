@@ -1,10 +1,27 @@
 'use strict';
 
 angular.module('chatApp')
-.controller('SocketCtrl',['$log','$scope','$http', 'chatSocket', 'messageFormatter', 'Authentication', 
-		function ($log, $scope, $http, chatSocket, messageFormatter, Authentication) {
-			var email = Authentication.user.email || 'anonymous@nowhere.com';	
-			var nickName = $scope.nickName = email.substring(0, email.indexOf('@'));
+.controller('SocketCtrl',['$log','$scope','$state','$http', 'chatSocket', 'messageFormatter', 'Authentication', 
+		function ($log, $scope, $state, $http, chatSocket, messageFormatter, Authentication) {
+			// If no user is logged in	
+			if (!Authentication.user){
+				// We do not support chat; Ask them to signin first beofore using it	
+				$state.go("signin");
+			}	
+			var emailToUserName = function (email) { return email.substring(0, email.indexOf('@')); }
+
+			var email = Authentication.user.email;
+			// Get the part of the e-mail before the @ sign and set it as the user's nickName
+			var nickName = $scope.nickName = emailToUserName(email);	
+			$http.get('/api/chat').then(function(resp) {
+
+				angular.forEach(resp.data, function(value, key) {
+					var prevMsg = messageFormatter(
+							new Date(value.Timestamp), emailToUserName(value.User.email), 
+							value.Text);
+					$scope.messageLog += prevMsg;
+				});	
+			});
 
 			$scope.messageLog = 'Ready to chat!\n';
 			$scope.sendMessage = function() {
@@ -40,10 +57,10 @@ angular.module('chatApp')
 
 				// Append to the message log
 				$scope.$apply(function() {
-				var newMessage = messageFormatter(
-						new Date(), data.source, 
-						data.payload);
-				$scope.messageLog = $scope.messageLog + newMessage;
+					var newMessage = messageFormatter(
+							new Date(), data.source, 
+							data.payload);
+					$scope.messageLog = $scope.messageLog + newMessage;
 				});
 			});
 		}]);  // end of controller

@@ -11,17 +11,17 @@
         <a href="home" ui-sref="home" class="navbar-brand mylogo"></a>
    </div>
    <div class="navbar-collapse collapse" id="navbar" role="navigation" collapse="isCollapsed" >
-					 <ul class="nav navbar-nav navbar-right"> 
+					 <ul class="nav navbar-nav navbar-right">
             <li><a ui-sref="signin" ng-show="!loggedIn">Log In</a></li>
 						<li><a ui-sref="signup" ng-show="!loggedIn">Sign Up</a></li>
+						<li><a href="/#!/servers" ng-show="loggedIn">Current Tickets</a></li>
+						<li><a href="/#!/chat" ng-show="loggedIn">New Ticket</a></li>
 						<li><a href="/auth/signout" ng-show="loggedIn">Sign Out</a></li>
-						<li data-ng-bind="authentication.user.email"></li> 
+						<li data-ng-bind="authentication.user.email"></li>
 
         </ul>
-		
+
    </div><!--/.nav-collapse -->
 	</div>
         </nav>
 </div>
-
-

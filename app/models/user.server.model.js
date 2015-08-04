@@ -25,6 +25,9 @@ var validateLocalStrategyPassword = function(password) {
  * User Schema
  */
 var UserSchema = new Schema({
+	username : {
+		type : String
+	},	
 	email: {
 		type: String,
 		trim: true,
@@ -80,6 +83,12 @@ UserSchema.pre('save', function(next) {
 		this.salt = crypto.randomBytes(16).toString('base64');
 		this.password = this.hashPassword(this.password);
 	}
+
+	next();
+});
+
+UserSchema.pre('save', function(next) {
+	this.username = this.email.substring(0, this.email.indexOf('@')); 
 
 	next();
 });

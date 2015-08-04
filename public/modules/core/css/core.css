@@ -93,9 +93,9 @@ h1{
 }
 
 .browser .browser-content {
-    background-image: url("https://www.digitalocean.com/assets/images/create-droplet-v5-e512defa.gif");
+    background-image: url("../../../assets/chat-image2.gif");
     height: 440px;
-    background-position: center top;
+    background-position: center bottom;
     overflow: hidden;
     position: relative;
     background-size: cover;

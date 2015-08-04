@@ -5,6 +5,6 @@ module.exports = function(app) {
    app.route('/chat').get(chat.index, function (req, res){
     });
 	 app.route('/api/chat')
-		 .post(chat.createMessage)
+		 .post(chat.postMessage)
 		 .get(chat.getMessages);
 };

@@ -47,13 +47,13 @@ io.on('connection', function (socket) {
 
 		console.log('broadcasting message');
 		console.log('payload is', msg);
-		
 	
-		chat.createMessage({
-			User: user,
-			Text: msg,
-			Timestamp: Date.now()
-		});	
+//		chat.createMessage({
+//			User: user,
+//			Text: msg,
+//			Timestamp: Date.now()
+//		});	
+
 		io.sockets.emit('broadcast', {
 			payload: msg,
 			source: from

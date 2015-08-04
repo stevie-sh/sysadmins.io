@@ -1,16 +1,16 @@
 'use strict';
 
-angular.module('chat').controller('ChatController', ['$scope', '$location', '$http', 'Authentication', 'Menus','TicketFactory', 
-		function($scope, $location, $http, Authentication, Menus, Tickets) {
+angular.module('chat').controller('ChatController', ['$scope', '$location', '$http', '$state', 'Authentication', 'Menus','TicketFactory',
+		function($scope, $location, $http, $state, Authentication, Menus, Tickets) {
 			$scope.authentication = Authentication;
-			$scope.isCollapsed = false;	
+			$scope.isCollapsed = false;
 
 			$scope.submitTicket = function () {
 				console.log("Submit Clicked");
 				console.log($scope.ticket);
 				var ticket = $scope.ticket;
 
-				$scope.ticket.user = $scope.authentication.user;	
+				$scope.ticket.user = $scope.authentication.user;
 
 				var req = {
 					method: 'POST',
@@ -38,6 +38,7 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', '$ht
 						data: { ticketHTML: ticketHTML }
 					};
 					$http(req);
+					$state.go('servers');
 				}).error(function () { return console.log("FAIL!");});
 			};
 

@@ -4,7 +4,7 @@
   display: inline-block;
   max-width: 300px;
   background:#efefef;
-  margin-right:25px;
+  margin: 0px 25px 25px 0px;
   height:initial;
 }
 .submittickets:nth-child(1){
@@ -13,5 +13,6 @@
 }
 .flex-area{
   display: flex;
-  justify-content: flex-start
+  justify-content: flex-start;
+  flex-wrap:wrap;
 }

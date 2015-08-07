@@ -1,32 +1,27 @@
 'use strict';
 
 angular.module('chatApp')
-.controller('SocketCtrl',['$log','$scope','$state','$http', 'chatSocket', 'messageFormatter', 'Authentication', 
-		function ($log, $scope, $state, $http, chatSocket, messageFormatter, Authentication) {
+.controller('SocketCtrl',['$log','$scope','$state','$http', 'ChatService', 'messageFormatter', 'Authentication', '$cookies', 
+		function ($log, $scope, $state, $http, ChatService, messageFormatter, Authentication, $cookies) {
+			$scope.user = Authentication.user;	
+			
 			// If no user is logged in	
-			if (!Authentication.user){
+			if (!$scope.user){
 				// We do not support chat; Ask them to signin first beofore using it	
 				$state.go('signin');
-			}	
-			var emailToUserName = function (email) { return email.substring(0, email.indexOf('@'));};
-
+				return;
+			}
+				
 			var email = Authentication.user.email;
 			// Get the part of the e-mail before the @ sign and set it as the user's nickName
-			var nickName = $scope.nickName = emailToUserName(email);	
-
+			var nickName = $scope.nickName = ChatService.emailToUserName(email);	
 
 			$scope.messageLog = 'Ready to chat!\n';
-			// Repopulate the message log with all previous messages	
-			$http.get('/api/chat').then(function(resp) {
-
-				angular.forEach(resp.data, function(value, key) {
-					var prevMsg = messageFormatter(
-							new Date(value.Timestamp), emailToUserName(value.User.email), 
-							value.Text);
-					$scope.messageLog += prevMsg;
-				});	
-			});
-
+			ChatService.refreshChat();			
+			if ($cookies.needsRefresh !== 'true')
+				$cookies.firstMessage = Date.now();
+			$scope.messageLog += ChatService.messageLog;
+		
 			$scope.sendMessage = function() {
 				// Regex for matching /nick <nickname>	
 				var match = $scope.message.match('^\/nick (.*)');
@@ -40,10 +35,10 @@ angular.module('chatApp')
 					// Clear the send box 
 					$scope.message = '';
 					// Append to the message log
-					$scope.messageLog = $scope.messageLog + messageFormatter(new Date(), 
+					ChatService.messageLog = ChatService.messageLog + messageFormatter(new Date(), 
 							nickName, 'nickname changed - from ' + 
 							oldNick + ' to ' + nickName + '!'); 
-
+					
 					// Set the new nickname
 					$scope.nickName = nickName;
 				}
@@ -52,18 +47,19 @@ angular.module('chatApp')
 				if ($scope.message) {
 					$log.debug('sending message', $scope.message);
 					// Broadcast message to all connected users	
-					chatSocket.emit('message', nickName, Authentication.user, $scope.message);
-
+					ChatService.socket.emit('message', nickName, Authentication.user, $scope.message);
+					
+					$cookies.needsRefresh = true;
 					// Create the new message in the DB	
 					$http.post('/api/chat', {
 						User: Authentication.user,
-						Text: $scope.message,
-						Timestamp: Date.now
+						Text: $scope.message
 					});
+
 					$scope.message = '';
 					$log.debug('message sent', $scope.message);
 				}
-			};
+			}; // end sendMessage
 
 			// Listen for broadcast messages
 			$scope.$on('socket:broadcast', function(event, data) {
@@ -80,7 +76,11 @@ angular.module('chatApp')
 					var newMessage = messageFormatter(
 							new Date(), data.source, 
 							data.payload);
-					$scope.messageLog = $scope.messageLog + newMessage;
+					ChatService.messageLog += newMessage;
 				});
+			});
+
+			$scope.$watch(function () {
+				$scope.messageLog = ChatService.messageLog;	
 			});
 		}]);  // end of controller

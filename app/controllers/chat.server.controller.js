@@ -30,6 +30,15 @@ exports.createMessage = function (msg) {
 	});
 };
 
+exports.getMessagesFromDate = function(req, res) {
+	var messages = Message.find({Timestamp: { $gte : req.params.date} }, function(err, messages){
+		if (err) res.send(err);	
+		res.json(messages);		
+});
+
+
+};
+
 exports.getMessages = function (req, res) {
 	var messages = Message.find(function (err, messages){
 		if (err) res.send(err);

@@ -7,4 +7,6 @@ module.exports = function(app) {
 	 app.route('/api/chat')
 		 .post(chat.postMessage)
 		 .get(chat.getMessages);
+	 app.route('/api/chat/messages/:date')
+		 .get(chat.getMessagesFromDate);
 };

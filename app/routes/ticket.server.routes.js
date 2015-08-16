@@ -13,13 +13,13 @@ module.exports = function(app) {
 	
 	app.route('/api/ticket')
 		// CREATE
-		.post(users.requiresLogin, tickets.create)
+		.post( tickets.create)
 		// LIST ALL	
-		.get(users.requiresLogin, tickets.list);
+		.get( tickets.list);
 
 	app.route('/api/ticket/:ticket_id')
 		// READ 
-		.get(users.requiresLogin, tickets.read)
+		.get( tickets.read)
 		// UPDATE	
 		.put(users.requiresLogin, tickets.update)
 		// DELETE	

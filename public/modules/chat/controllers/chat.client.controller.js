@@ -22,12 +22,12 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', '$ht
 				};
 
 				$http(req).success(function () {
-					console.log("SUCCESS!");
 
 					var ticketHTML = "<h2>Server Name: " + ticket.server.name + "</h2>"
 					+ "<h3>Operating System: " + ticket.server.OS + "</h3>"
 					+ "<h3>Hosting Service: " + ticket.hostingService + "</h3>"
-					+ "<p>Problem: " + ticket.problem + "</p>";
+					+ "<h3>Problem: " + ticket.problem + "</h3>" 
+					+ "<h3>Add 'sysadminsio' on Skype to access the chat client during our beta period</h3>";
 
 					req = {
 						method: 'POST',

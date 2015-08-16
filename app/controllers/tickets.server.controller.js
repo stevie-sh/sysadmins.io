@@ -17,10 +17,11 @@ var transporter = nodemailer.createTransport(ses({
 }));
 
 exports.sendEmail = function(req, res) {
+	//send from webmaster to webmaster
 	transporter.sendMail({
-		from: process.env.MAIL_FROM, 
-		to: process.env.MAIL_TO, 
-		subject: 'New ticket created',
+		from: process.env.WEBMASTER,  //webmaster
+		to: process.env.WEBMASTER, 
+		subject: 'Sysadmins.io: New Ticket Created!',
 		html: req.body.ticketHTML
 	}, function(error, responseStatus){
 		if (error)
@@ -30,9 +31,26 @@ exports.sendEmail = function(req, res) {
 			console.log(responseStatus.messageId); // Message-ID value used
 		}
 	});
-
-
 	res.status(200).send();
+
+	//send from webmaster to auth user
+	transporter.sendMail({
+		from: process.env.WEBMASTER, 
+		to: req.body.user.email,
+		subject: 'Sysadmins.io: New Ticket Created!',
+		html: req.body.ticketHTML
+	}, function(error, responseStatus){
+		if (error)
+			console.log(error);		
+		else{
+			console.log(responseStatus.message); // response from the server
+			console.log(responseStatus.messageId); // Message-ID value used
+		}
+	});
+	console.log("dumping here\n\n\n");
+	console.log(req.body.user.email);
+	res.status(200).send();
+
 };
 
 

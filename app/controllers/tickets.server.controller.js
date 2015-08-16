@@ -76,7 +76,7 @@ exports.create = function(req, res) {
 };
 
 exports.read = function(req, res) {
-	Ticket.findById(req.params.ticket_id, function(err, ticket)
+	Ticket.findById(req.params.ticket_id).populate('_user', '-password -salt').exec(function(err, ticket)
 			{
 				if (err) res.send(err);
 				res.json(ticket);
@@ -92,7 +92,7 @@ exports.update = function(req, res) {
 
 		ticket.save(function (err) {
 			if (err) res.send(err);
-			res.json( { message : "Ticket updated!" });	
+			res.json( { message : 'Ticket updated!' });	
 		});	
 	});
 };
@@ -102,7 +102,7 @@ exports.delete = function(req, res) {
 			{ _id : req.params.ticket_id },			
 			function(err) {
 				if (err) res.send(err);
-				res.json( { message : "Successfully deleted ticket" } );	
+				res.json( { message : 'Successfully deleted ticket' } );	
 			});
 };
 
@@ -111,4 +111,4 @@ exports.list = function(req, res) {
 		if (err) res.send(err);
 		res.json(tickets);
 	});
-}
+};

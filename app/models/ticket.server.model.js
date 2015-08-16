@@ -11,7 +11,8 @@ var mongoose = require('mongoose'),
  */
 var TicketSchema = new Schema({
 	server : { type: Schema.Types.Mixed, ref:'Server' },
-	user : { type: Schema.Types.Mixed, ref:'User' },	
+	_user : { type: Schema.Types.ObjectId, ref:'User' },
+	_chat : { type: Schema.Types.ObjectId,	ref: 'Chat'},
 	//questions : [{type: Schema.Types.Mixed, ref: 'Question'}],
 	// responses : [{
 	// 	id : Number,

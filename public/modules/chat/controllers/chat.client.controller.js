@@ -1,16 +1,16 @@
 'use strict';
 
-angular.module('chat').controller('ChatController', ['$scope', '$location', '$http', 'Authentication', 'Menus','TicketFactory', 
-		function($scope, $location, $http, Authentication, Menus, Tickets) {
+angular.module('chat').controller('ChatController', ['$scope', '$location', '$http', 'Authentication', 'Menus','TicketFactory','$state', 
+		function($scope, $location, $http, Authentication, Menus, Tickets, $state) {
 			$scope.authentication = Authentication;
 			$scope.isCollapsed = false;	
 
 			$scope.submitTicket = function () {
-				console.log("Submit Clicked");
+				console.log('Submit Clicked');
 				console.log($scope.ticket);
 				var ticket = $scope.ticket;
 
-				$scope.ticket.user = $scope.authentication.user;	
+				$scope.ticket._user = $scope.authentication.user._id;	
 
 				var req = {
 					method: 'POST',
@@ -22,12 +22,12 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', '$ht
 				};
 
 				$http(req).success(function () {
-					console.log("SUCCESS!");
+					console.log('SUCCESS!');
 
-					var ticketHTML = "<h2>Server Name: " + ticket.server.name + "</h2>"
-					+ "<h3>Operating System: " + ticket.server.OS + "</h3>"
-					+ "<h3>Hosting Service: " + ticket.hostingService + "</h3>"
-					+ "<p>Problem: " + ticket.problem + "</p>";
+					var ticketHTML = '<h2>Server Name: ' + ticket.server.name + '</h2>' +
+						 '<h3>Operating System: ' + ticket.server.OS + '</h3>' +
+						 '<h3>Hosting Service: ' + ticket.hostingService + '</h3>' +
+						 '<p>Problem: ' + ticket.problem + '</p>';
 
 					req = {
 						method: 'POST',
@@ -38,7 +38,8 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', '$ht
 						data: { ticketHTML: ticketHTML }
 					};
 					$http(req);
-				}).error(function () { return console.log("FAIL!");});
+					$state.go('chatApp');
+				}).error(function () { return console.log('FAIL!');});
 			};
 
 

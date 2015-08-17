@@ -17,31 +17,28 @@ angular.module('chatApp')
 			var nickName = $scope.nickName = ChatService.emailToUserName(email);	
 
 			$scope.messageLog = 'Ready to chat!\n';
-			ChatService.refreshChat();			
+			// ChatService.refreshChat();			
 			if ($cookies.needsRefresh !== 'true')
 				$cookies.firstMessage = Date.now();
 			$scope.messageLog += ChatService.messageLog;
-		
+
+			console.log('Adding user: ' + $scope.user.username);	
+			ChatService.socket.emit('addUser', $scope.user.username);	
 			$scope.sendMessage = function() {
-				// Regex for matching /nick <nickname>	
-				var match = $scope.message.match('^\/nick (.*)');
-				// If we match, and have an array w/ len 2
-				if (angular.isDefined(match) && 
-						angular.isArray(match) && match.length === 2) {
-					// Save the old name
-					var oldNick = nickName;
-					// Set the new name	
-					nickName = match[1];
-					// Clear the send box 
+				ChatService.socket.emit('sendChat', $scope.message);
+				
+				
+				var joinRegEx = '^\/join (.*)';
+				var joinRoom = ChatService.matchedChatCommand($scope.message, joinRegEx);	
+
+				if (joinRoom) {
+					console.log('Want to join room: ' + joinRoom[1]);
+
+					// ChatService.socket.emit('command', { Command: 'join', User: $scope.user, Room: joinRoom[1] } ); 
+					ChatService.socket.emit('switchRoom', joinRoom[1]);
+					// Clear the send box
 					$scope.message = '';
-					// Append to the message log
-					ChatService.messageLog = ChatService.messageLog + messageFormatter(new Date(), 
-							nickName, 'nickname changed - from ' + 
-							oldNick + ' to ' + nickName + '!'); 
-					
-					// Set the new nickname
-					$scope.nickName = nickName;
-				}
+				}	
 
 				// If the message is not blank	
 				if ($scope.message) {
@@ -56,28 +53,18 @@ angular.module('chatApp')
 						Text: $scope.message
 					});
 
-					$scope.message = '';
 					$log.debug('message sent', $scope.message);
+					$scope.message = '';
 				}
+
+						
 			}; // end sendMessage
 
-			// Listen for broadcast messages
-			$scope.$on('socket:broadcast', function(event, data) {
-				// Log any errors	
-				$log.debug('got a message', event.name);
-				if (!data.payload) {
-					$log.error('invalid message', 'event', event, 
-							'data', JSON.stringify(data));
-					return;
-				}
-
-				// Append to the message log
-				$scope.$apply(function() {
-					var newMessage = messageFormatter(
-							new Date(), data.source, 
-							data.payload);
-					ChatService.messageLog += newMessage;
-				});
+			ChatService.socket.on('updateChat', function(username, data) {
+				console.log('Updating chat ....');	
+			
+				if (data.substring(0,5) === '/join') return;	
+				ChatService.messageLog += messageFormatter(new Date(), username, data);	
 			});
 
 			$scope.$watch(function () {

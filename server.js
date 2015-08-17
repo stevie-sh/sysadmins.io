@@ -37,30 +37,50 @@ var io = require('socket.io'),
 		server = http.createServer(app),
 		io = io.listen(server),
 		chat = require('./app/controllers/chat.server.controller'),
-		user = require('./app/controllers/users/users.profile.server.controller');
+		user = require('./app/controllers/users/users.profile.server.controller'),
+		usernames = {};
 
 io.on('connection', function (socket) {
-	socket.on('message', function (from, user, msg) {
 
-		console.log('recieved message from', 
-				from, 'msg', JSON.stringify(msg));
-
-		console.log('broadcasting message');
-		console.log('payload is', msg);
-	
-//		chat.createMessage({
-//			User: user,
-//			Text: msg,
-//			Timestamp: Date.now()
-//		});	
-
-		io.sockets.emit('broadcast', {
-			payload: msg,
-			source: from
-		});
-		console.log('broadcast complete');
+	socket.on('addUser', function(username){
+		console.log(chalk.red('Adding user: ' + username));
+		// store the username in the socket session for this client
+		socket.username = username;
+		// store the room name in the socket session for this client
+		socket.room = 'room1';
+		// add the client's username to the global list
+		usernames[username] = username;
+		// send client to room 1
+		socket.join('room1');
+		// echo to client they've connected
+		socket.emit('updateChat', 'SERVER', 'you have connected to room1');
+		// echo to room 1 that a person has connected to their room
+		console.log(chalk.red('Firing updateChat!'));
+		socket.broadcast.to('room1').emit('updateChat', 'SERVER', username + ' has connected to this room');
+		// socket.emit('updaterooms', rooms, 'room1');
 	});
-});
+
+	// when the client emits 'sendchat', this listens and executes
+	socket.on('sendChat', function (data) {
+		// we tell the client to execute 'updatechat' with 2 parameters
+		io.sockets.in(socket.room).emit('updateChat', socket.username, data);
+	});
+
+	socket.on('switchRoom', function(newroom){
+		// leave the current room (stored in session)
+		socket.leave(socket.room);
+		// join new room, received as function parameter
+		socket.join(newroom);
+		socket.emit('updateChat', 'SERVER', 'you have connected to '+ newroom);
+		// sent message to OLD room
+		socket.broadcast.to(socket.room).emit('updateChat', 'SERVER', socket.username+' has left this room');
+		// update socket session room title
+		socket.room = newroom;
+		socket.broadcast.to(newroom).emit('updateChat', 'SERVER', socket.username+' has joined this room');
+		// socket.emit('updaterooms', rooms, newroom);
+	});
+
+}); // end io.on('connection')
 
 // Bootstrap passport config
 require('./config/passport')();

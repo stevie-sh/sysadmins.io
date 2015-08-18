@@ -1,0 +1,18 @@
+.submittickets{
+  padding:25px;
+  border-radius: 4px;
+  display: inline-block;
+  max-width: 300px;
+  background:#efefef;
+  margin: 0px 25px 25px 0px;
+  height:initial;
+}
+.submittickets:nth-child(1){
+  background:#2ECC71;
+  color:white;
+}
+.flex-area{
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap:wrap;
+}

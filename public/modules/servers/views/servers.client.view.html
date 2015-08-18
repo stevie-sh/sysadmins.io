@@ -1,25 +1,10 @@
-<section data-ng-controller="ServersController">
-	<div class="container"><h1>Your servers</h1></div>
-	<div class="container padding">
-		<div class="server focus">
-			<div class="ubuntu">
-			</div>
-		</div>
-		<div class="info">
-			<h2>Image server</h2>
-			<button type="button" class="btn btn-success">New Ticket</button>
-			<button type="button" class="btn btn-danger">Open Tickets <span class="badge">1</span></button>
-			<button type="button" class="btn btn-default">Closed Tickets</button>
-		</div>
-	</div>
-	<div class="container padding">
-		<div class="server">
-		</div>
-		<div class="info">
-			<h2>Web server</h2>
-			<button type="button" class="btn btn-success">New Ticket</button>
-			<button type="button" class="btn btn-danger">Open Tickets <span class="badge">1</span></button>
-			<button type="button" class="btn btn-default">Closed Tickets</button>
-		</div>
-	</div>
+<section ng-controller="ServersController">
+<h1>Submitted Tickets</h1>
+<div class="flex-area">
+  <div  ng-model="whatever" class="submittickets" ng-repeat="item in whatever | filter:  {user: {_id: authentication.user._id}} | orderBy: reverse">
+      <h2><b>{{item.server.name}}</b></h2>
+      <h2>{{item.server.OS}}, {{item.hostingService}}</h2>
+      <p>{{item.problem}}</p>
+  </div>
+ </div>
 </section>

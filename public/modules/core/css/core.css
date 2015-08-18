@@ -47,7 +47,7 @@ h1{
 }
 
 .navbar-brand.mylogo {
-    background:url("../../../assets/onlylogo.svg");
+    background:url("../../../assets/logos/onlylogo.svg");
     background-size: 100px 100px;
     width: 100px;
     height: 100px;
@@ -93,9 +93,9 @@ h1{
 }
 
 .browser .browser-content {
-    background-image: url("https://www.digitalocean.com/assets/images/create-droplet-v5-e512defa.gif");
+    background-image: url("../../../assets/chat-image3.gif");
     height: 440px;
-    background-position: center top;
+    background-position: center bottom;
     overflow: hidden;
     position: relative;
     background-size: cover;

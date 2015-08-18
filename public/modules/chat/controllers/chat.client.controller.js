@@ -2,8 +2,8 @@
 
 angular.module('chat').controller('ChatController', ['$scope', '$location', '$http', 'Authentication', 'Menus','TicketFactory','$state', 
 		function($scope, $location, $http, Authentication, Menus, Tickets, $state) {
-			$scope.authentication = Authentication;
-			$scope.isCollapsed = false;	
+		$scope.authentication = Authentication;
+			$scope.isCollapsed = false;
 
 			$scope.submitTicket = function () {
 				console.log('Submit Clicked');
@@ -11,7 +11,6 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', '$ht
 				var ticket = $scope.ticket;
 
 				$scope.ticket._user = $scope.authentication.user._id;	
-
 				var req = {
 					method: 'POST',
 					url: '/api/ticket',
@@ -22,12 +21,12 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', '$ht
 				};
 
 				$http(req).success(function () {
-					console.log('SUCCESS!');
-
-					var ticketHTML = '<h2>Server Name: ' + ticket.server.name + '</h2>' +
-						 '<h3>Operating System: ' + ticket.server.OS + '</h3>' +
-						 '<h3>Hosting Service: ' + ticket.hostingService + '</h3>' +
-						 '<p>Problem: ' + ticket.problem + '</p>';
+				var ticketHTML = "<h1>User submitted: " + ticket.user.email
+					+	"<h2>Server Name: " + ticket.server.name + "</h2>"
+					+ "<h3>Operating System: " + ticket.server.OS + "</h3>"
+					+ "<h3>Hosting Service: " + ticket.hostingService + "</h3>"
+					+ "<h3>Problem: " + ticket.problem + "</h3>" 
+					+ "<h3>Add 'sysadminsio' on Skype to access the chat client during our beta period</h3>";
 
 					req = {
 						method: 'POST',
@@ -35,11 +34,11 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', '$ht
 						headers: {
 							'Content-Type': 'application/json; charset=UTF-8'
 						},
-						data: { ticketHTML: ticketHTML }
+						data: { ticketHTML: ticketHTML, user: $scope.ticket.user }
 					};
 					$http(req);
-					$state.go('chatApp');
-				}).error(function () { return console.log('FAIL!');});
+				$state.go('servers');
+				}).error(function () { return console.log("FAIL!");});
 			};
 
 

@@ -1,13 +1,11 @@
 'use strict';
 
-//Setting up route
-angular.module('servers').config(['$stateProvider',
-	function($stateProvider) {
-		// Servers state routing
-		$stateProvider.
-		state('servers', {
-			url: '/servers',
-			templateUrl: 'modules/servers/views/servers.client.view.html'
-		});
-	}
-]);
+angular.module('servers')
+    .config(['$stateProvider', '$urlRouterProvider',
+            function ($stateProvider, $urlRouterProvider) {
+                $stateProvider.state('servers', {
+									url: '/servers',
+									templateUrl: 'modules/servers/views/servers.client.view.html',
+									controller: 'ServersController'
+								});
+ }]);

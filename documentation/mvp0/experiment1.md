@@ -19,7 +19,6 @@ Solution: Joe finds sysadmins.io where he can dive right into getting his proble
 
 Competitors: Managed VPS.
 
-
 Questions:
 What kinds of problems does a developer have? What kinds of tickets will they need? 
 How does Joe (our customer) communicate or desire to communicate?
@@ -33,7 +32,11 @@ Driver 5 customers to the platform that fit different categories. Find who you c
 * Non-technical person who wants a website
 * Technical startup guy without a lot of time
 
+Get into contact with more sysadmins, more startup founders, more mom and pop shops
+
 Conclusions:
 * Are they filling up tickets the way they want? Is the ticket form friendly?
 * How are our assumptions? Does Joe KNOW what a sysadmin is?
+* Does transparency resonate with our clients?
+
 

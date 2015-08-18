@@ -20,8 +20,9 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', '$ht
 					data: { ticket: ticket }
 				};
 
+				console.log(ticket);
 				$http(req).success(function () {
-				var ticketHTML = "<h1>User submitted: " + ticket.user.email
+				var ticketHTML = "<h1>User submitted: " + $scope.authentication.user.email
 					+	"<h2>Server Name: " + ticket.server.name + "</h2>"
 					+ "<h3>Operating System: " + ticket.server.OS + "</h3>"
 					+ "<h3>Hosting Service: " + ticket.hostingService + "</h3>"
@@ -34,7 +35,7 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', '$ht
 						headers: {
 							'Content-Type': 'application/json; charset=UTF-8'
 						},
-						data: { ticketHTML: ticketHTML, user: $scope.ticket.user }
+						data: { ticketHTML: ticketHTML, user: $scope.authentication.user }
 					};
 					$http(req);
 				$state.go('servers');

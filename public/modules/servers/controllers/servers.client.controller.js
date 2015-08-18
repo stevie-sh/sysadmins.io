@@ -13,7 +13,8 @@ angular.module('servers').controller('ServersController', ['$scope', '$location'
 							data: {}
 						};
 						$http(req).success(function (data) {
+							console.log(data);
 							$scope.whatever = data;
-						});
+						}).error(function(){ console.log('FAIL') });
             $scope.currentUser = { 'user._id': Authentication.user._id };
 }]);

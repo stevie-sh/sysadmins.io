@@ -17,10 +17,11 @@ var transporter = nodemailer.createTransport(ses({
 }));
 
 exports.sendEmail = function(req, res) {
+	console.log(req.body.ticketHTML);	
 	//send from webmaster to webmaster
 	transporter.sendMail({
-		from: process.env.WEBMASTER,  //webmaster
-		to: process.env.WEBMASTER, 
+		from: process.env.MAIL_FROM,  //webmaster
+		to: process.env.MAIL_TO, 
 		subject: 'Sysadmins.io: New Ticket Created!',
 		html: req.body.ticketHTML
 	}, function(error, responseStatus){
@@ -35,7 +36,7 @@ exports.sendEmail = function(req, res) {
 
 	//send from webmaster to auth user
 	transporter.sendMail({
-		from: process.env.WEBMASTER, 
+		from: process.env.MAIL_FROM, 
 		to: req.body.user.email,
 		subject: 'Sysadmins.io: New Ticket Created!',
 		html: req.body.ticketHTML
@@ -125,7 +126,7 @@ exports.delete = function(req, res) {
 };
 
 exports.list = function(req, res) {
-	Ticket.find(function(err, tickets) {
+	Ticket.find().populate('_user', '-password -salt').exec(function(err, tickets) {
 		if (err) res.send(err);
 		res.json(tickets);
 	});

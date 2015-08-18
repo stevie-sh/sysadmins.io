@@ -1,0 +1,34 @@
+#Sysadmins.io
+
+##Experiment 1:
+Customer:
+* People that need sysadmin help. Fast, on-demand, and simple. 
+* *Non-technical founders.  (JOE)*
+* People on the web (setting up personal websites)
+* Sysadmins with too many servers to watch.
+
+###Who is Joe?
+Needs some kind of service done on their server i.e. set up NGINX or Apache. Not familiar with system administration. Who wants to set up a business. Non-technical.
+
+###Problem that Joe faces?
+"Dude... I just want my idea up and running"
+**Joe has no method of getting high-quality system administration on-demand**
+
+###Assumptions: (revise)
+**1. Joe knows what system administration is.**
+2. Joe has a server.
+3. Joe knows how to use a website.
+
+##MVP 1 (basic plan):
+Login.
+Open a server ticket.
+pIt'll send an email to internal team.
+
+
+##Roadmap
+Panel that shows current tasks that sysadmin is doing.
+Chat matches you with a sysadmin.
+
+
+
+

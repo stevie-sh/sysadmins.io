@@ -58,5 +58,9 @@ https://www.godaddy.com/pro/managed-vps
 $29.99/mo -- coupled with VPs
 
 ##CUSTOMER SEGMENTS:
-* SYSADMINS
-* Developers & Non-technical people
+http://www.webhostingtalk.com/showthread.php?t=1245728
+* Novice-intermediate sysadmins who need help
+* Senior sysadmins with too much to manage
+* Developers without sysadmin experience
+* Web-designers
+* Newbie internet marketers

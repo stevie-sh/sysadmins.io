@@ -3,8 +3,9 @@
 angular.module('core').controller('HeaderController', ['$scope', '$location', 'Authentication', 'Menus', '$state',
 		function($scope, $location, Authentication, Menus, $state) {
 			$scope.authentication = Authentication;
+
 			// $scope.isCollapsed = false;
-			$scope.loggedIn = false;
+			$scope.loggedIn = $scope.authentication.user;
 			// $scope.$parent.$parent.menubarVisible = true; 
 			// $scope.menu = Menus.getMenu('topbar');
 
@@ -12,11 +13,10 @@ angular.module('core').controller('HeaderController', ['$scope', '$location', 'A
 				$scope.isCollapsed = !$scope.isCollapsed;
 			};
 
-			// Collapsing the menu after navigation
 			$scope.$on('$stateChangeSuccess', function() {
-			if ($scope.authentication.user) {	
+				if ($scope.authentication.user) {	
 					$scope.loggedIn = true;
-			}
+				}
 
 				if ($location.url() === '/chat') {
 					if (!$scope.loggedIn) {

@@ -3,8 +3,8 @@
 <------------------------------------- complexity graph -------------------------------------------------------------------------------------------------------->
 SquareSpace																																																														AWS unmanaged 
 				WordPress																																																						Rackspace Unmanaged
-						Drupal																														
-									Hostgator																								AWS Managed
+						Drupal																																	  <---------------GAP ---------------->
+									Hostgator																								AWS Managed 
 												GoDaddy																			Rackspace Managed
 																						Sysadmins.io
 
@@ -57,5 +57,6 @@ Platinum server management
 https://www.godaddy.com/pro/managed-vps
 $29.99/mo -- coupled with VPs
 
-
-
+##CUSTOMER SEGMENTS:
+* SYSADMINS
+* Developers & Non-technical people

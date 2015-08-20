@@ -4,7 +4,7 @@ angular.module('core').controller('HeaderController', ['$scope', '$location', 'A
 		function($scope, $location, Authentication, Menus, $state) {
 			$scope.authentication = Authentication;
 			// $scope.isCollapsed = false;
-			$scope.loggedIn = false;
+			$scope.loggedIn = $scope.authentication.user; 
 			// $scope.$parent.$parent.menubarVisible = true; 
 			// $scope.menu = Menus.getMenu('topbar');
 

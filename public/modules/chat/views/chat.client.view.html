@@ -17,6 +17,11 @@
       <div class="col-sm-10 testing">
         <div class="flex">
         <div class="radio">
+          <input type="radio" name="operating" value="Not Applicable" class="focusfix" id="red" ng-model="ticket.server.OS">
+          <label class="rop" for="red"><div class="notapplicable-os"></div></label>
+          <p>N/A</p>
+        </div>
+        <div class="radio">
           <input type="radio" name="operating" value="Ubuntu" class="focusfix" id="ubuntu" checked="checked" ng-model="ticket.server.OS">
           <label class="rop" for="ubuntu"><div class="ubuntu"></div></label>
           <p>Ubuntu</p>
@@ -37,7 +42,6 @@
           <p>RedHat</p>
         </div>
         <div class="invisa"></div>
-        <div class="invisa"></div>
         </div>
       </div>
     </div>
@@ -45,6 +49,11 @@
       <h2 class="col-sm-2">Hosting Service</h2>
       <div  class="col-sm-10 sadmin">
         <div class="flex">
+        <div class="radio">
+          <input type="radio" name="service" value="Not Applicable" id="notapplicable-hs" ng-model="ticket.hostingService">
+          <label class="serv" for="notapplicable-hs"><div class="notapplicable-hs"></div></label>
+          <p>N/A</p>
+        </div>
         <div class="radio">
           <input type="radio" checked="checked" name="service" value="AWS" id="aws" ng-model="ticket.hostingService">
           <label class="serv" for="aws"><div class="aws"></div></label>
@@ -75,7 +84,6 @@
           <label class="serv" for="medte"><div class="mt"></div></label>
           <p>MediaTemple</p>
         </div>
-        <div class="invis"></div>
         <div class="invis"></div>
       </div>
       </div>

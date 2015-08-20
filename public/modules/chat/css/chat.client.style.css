@@ -75,10 +75,20 @@
 	opacity:.5;
 	transition: all .3s;
 }
-.focus .aws,.focus .digiocean, .focus .mt, .focus .rack ,.focus .linode, .focus .gapp {
+.notapplicable-hs{
+	width:100%;
+	height:150px;
+	background-image:url('../../../assets/os/notapplicable.png');
+	background-repeat: no-repeat;
+	background-size:75px 75px;
+	background-position: center center;
+	opacity:.5;
+	transition: all .3s;
+}
+.focus .aws,.focus .digiocean, .focus .mt, .focus .rack ,.focus .linode, .focus .gapp, .focus .notapplicable-hs {
 	opacity:1;
 }
-.digiocean:hover, .mt:hover, .rack:hover , .linode:hover, .gapp:hover {
+.digiocean:hover, .mt:hover, .rack:hover , .linode:hover, .gapp:hover, .notapplicable-hs:hover {
 	opacity:.75;
 	transition: all .3s;
 }

@@ -238,7 +238,17 @@ h2{
 	opacity:.5;
 		transition: all .3s;
 }
-.ubuntu:hover, .windows:hover, .centos:hover, .redhat:hover{
+.notapplicable-os{
+	width:100%;
+	height:200px;
+	background-image:url('../../../assets/os/notapplicable.png');
+	background-repeat: no-repeat;
+	background-size:100px 100px;
+	background-position: center center;
+	opacity:.5;
+		transition: all .3s;
+}
+.ubuntu:hover, .windows:hover, .centos:hover, .redhat:hover, .notapplicable-os:hover{
 	transiton: all .3s;
 	opacity:.75;
 }

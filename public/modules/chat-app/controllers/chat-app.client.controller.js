@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('chatApp')
-.controller('SocketCtrl',['$log','$scope','$state','$http', 'ChatService', 'messageFormatter', 'Authentication', '$cookies', 'TicketFactory', '$rootScope', '$location',
-		function ($log, $scope, $state, $http, ChatService, messageFormatter, Authentication, $cookies, TicketFactory, $rootScope, $location) {
+.controller('SocketCtrl',['$log','$scope','$state','$http', 'ChatService', 'messageFormatter', 'Authentication', '$cookies', 'TicketFactory', '$rootScope', '$location', '$stateParams',
+		function ($log, $scope, $state, $http, ChatService, messageFormatter, Authentication, $cookies, TicketFactory, $rootScope, $location, $stateParams) {
 			$scope.TicketFactory = TicketFactory;
 
 			$scope.$watch('TicketFactory.selectedTicket._id');
@@ -45,8 +45,13 @@ angular.module('chatApp')
 			console.log('Adding user: ' + $scope.user.username);	
 			ChatService.socket.emit('addUser', $scope.user.username);	
 
-			console.log('Switching Rooms: ' + $scope.TicketFactory.selectedTicket._id);
-			ChatService.socket.emit('switchRoom', $scope.TicketFactory.selectedTicket._id); 
+			if(! $stateParams.ticket_id ) {
+				console.log('Switching Rooms: ' + $scope.TicketFactory.selectedTicket._id);
+				ChatService.socket.emit('switchRoom', $scope.TicketFactory.selectedTicket._id); 
+			} else {
+				console.log('Switching Rooms: ' + $scope.TicketFactory.selectedTicket._id);
+				ChatService.socket.emit('switchRoom', $stateParams.ticket_id); 
+			}
 			// Send message upon button press	
 			$scope.sendMessage = function() {
 				ChatService.socket.emit('sendChat', $scope.message);

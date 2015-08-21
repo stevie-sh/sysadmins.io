@@ -5,7 +5,6 @@ angular.module('servers')
             function ($stateProvider, $urlRouterProvider) {
                 $stateProvider.state('servers', {
 									url: '/servers',
-									templateUrl: 'modules/servers/views/servers.client.view.html',
-									controller: 'ServersController'
+									templateUrl: 'modules/servers/views/servers.client.view.html'
 								});
  }]);

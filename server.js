@@ -37,8 +37,7 @@ var io = require('socket.io'),
 		server = http.createServer(app),
 		io = io.listen(server),
 		chat = require('./app/controllers/chat.server.controller'),
-		user = require('./app/controllers/users/users.profile.server.controller'),
-		usernames = {};
+		user = require('./app/controllers/users/users.profile.server.controller');
 
 io.on('connection', function (socket) {
 
@@ -47,16 +46,14 @@ io.on('connection', function (socket) {
 		// store the username in the socket session for this client
 		socket.username = username;
 		// store the room name in the socket session for this client
-		socket.room = 'room1';
-		// add the client's username to the global list
-		usernames[username] = username;
+		// socket.room = 'room1';
 		// send client to room 1
-		socket.join('room1');
+		// socket.join('room1');
 		// echo to client they've connected
-		socket.emit('updateChat', 'SERVER', 'you have connected to room1');
+		// socket.emit('updateChat', 'SERVER-addUser', 'you have connected to room1');
 		// echo to room 1 that a person has connected to their room
 		console.log(chalk.red('Firing updateChat!'));
-		socket.broadcast.to('room1').emit('updateChat', 'SERVER', username + ' has connected to this room');
+		// socket.broadcast.to('room1').emit('updateChat', 'SERVER', username + ' has connected to this room');
 		// socket.emit('updaterooms', rooms, 'room1');
 	});
 
@@ -67,11 +64,12 @@ io.on('connection', function (socket) {
 	});
 
 	socket.on('switchRoom', function(newroom){
+		console.log(newroom);	
 		// leave the current room (stored in session)
 		socket.leave(socket.room);
 		// join new room, received as function parameter
 		socket.join(newroom);
-		socket.emit('updateChat', 'SERVER', 'you have connected to '+ newroom);
+		socket.emit('updateChat', 'SERVER-switchRoom', 'you have connected to '+ newroom);
 		// sent message to OLD room
 		socket.broadcast.to(socket.room).emit('updateChat', 'SERVER', socket.username+' has left this room');
 		// update socket session room title
@@ -79,6 +77,16 @@ io.on('connection', function (socket) {
 		socket.broadcast.to(newroom).emit('updateChat', 'SERVER', socket.username+' has joined this room');
 		// socket.emit('updaterooms', rooms, newroom);
 	});
+
+//	socket.on('close', function() {
+//		console.log('Closing socket');
+//		socket.disconnect();	
+//	});
+
+//	socket.on('disconnect', function() {
+//		console.log('Reconnecting');	
+//		socket.reconnect();
+//	});
 
 }); // end io.on('connection')
 

@@ -4,7 +4,7 @@
   display: inline-block;
   max-width: 300px;
   background:#efefef;
-  margin: 0px 25px 25px 0px;
+  margin: 0 25px 25px 0;
   height:initial;
 }
 .submittickets:nth-child(1){

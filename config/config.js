@@ -106,4 +106,4 @@ module.exports.getCSSOverrides = function() {
 
 module.exports.getCurrentView = function() {
 	return null;    
-}
+};

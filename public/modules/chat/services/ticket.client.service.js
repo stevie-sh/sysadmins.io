@@ -3,7 +3,7 @@
 angular.module('chat').factory('TicketFactory', ['$http', function ($http) {
 		var factory = {};
 
-		factory.log = function () { console.log("TicketFactory"); };
+		factory.log = function () { console.log('TicketFactory'); };
 		factory.makeTicket = function () {
 			$http.post('/api/ticket', {});	
 		};

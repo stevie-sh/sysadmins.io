@@ -16,7 +16,7 @@ angular.module('welcome')
         });
 
         socket.on('disconnect', function(){
-           $log.log("Disconnect!", arguments);
+           $log.log('Disconnect!', arguments);
         });
 
         return {
@@ -37,7 +37,7 @@ angular.module('welcome')
                             callback.apply(socket, args);
                         }
                     });
-                })
+                });
             },
 
             remove: function(name) {

@@ -2,6 +2,7 @@
 
 angular.module('welcome')
 .factory('socket', ['$rootScope', '$log', '$timeout', function ($rootScope, $log, $timeout) {
+				/* global io: true */
         var socket = io.connect();
 
         $log.log('io', io);

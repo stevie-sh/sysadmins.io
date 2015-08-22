@@ -38,7 +38,7 @@ h1{
     border-color: #ffffff;
     padding-top: 20px;
     height: 72px;
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 .navbar-default.mymenu{
@@ -69,8 +69,8 @@ h1{
 }
 
 .crossbar ul.dots {
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
 }
 
 .dots li {
@@ -165,10 +165,6 @@ h1{
     color: white;
 }
 
-.navbar-fixed-top {
-/*	z-index: 0; */
-}
-
 li.ng-binding {
 	padding-top: 1em;
 }
@@ -195,7 +191,7 @@ li.ng-binding {
 h2{
 	font-size:18pt;
 	font-weight:300;
-	margin:0px;
+	margin:0;
 	margin-bottom:10px;
 }
 .ubuntu{
@@ -256,7 +252,7 @@ h2{
 	opacity:1;
 }
 .padding{
-	margin:15px 0px;
+	margin:15px 0;
 }
 /* Services */
 /* Flex Box */

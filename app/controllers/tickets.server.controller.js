@@ -47,8 +47,6 @@ exports.sendEmail = function(req, res) {
 			console.log(responseStatus.messageId); // Message-ID value used
 		}
 	});
-	console.log("dumping here\n\n\n");
-	console.log(req.body.user.email);
 	res.status(200).send();
 
 };
@@ -110,7 +108,7 @@ exports.update = function(req, res) {
 
 		ticket.save(function (err) {
 			if (err) res.send(err);
-			res.json( { message : "Ticket updated!" });	
+			res.json( { message : 'Ticket updated!' });	
 		});	
 	});
 };
@@ -120,7 +118,7 @@ exports.delete = function(req, res) {
 			{ _id : req.params.ticket_id },			
 			function(err) {
 				if (err) res.send(err);
-				res.json( { message : "Successfully deleted ticket" } );	
+				res.json( { message : 'Successfully deleted ticket' } );	
 			});
 };
 
@@ -129,4 +127,4 @@ exports.list = function(req, res) {
 		if (err) res.send(err);
 		res.json(tickets);
 	});
-}
+};

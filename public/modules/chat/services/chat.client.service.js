@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('chatApp')
+angular.module('chat')
 .factory('ChatService', function (socketFactory, $http, messageFormatter, Authentication, $cookies) {
 
 	var service = {

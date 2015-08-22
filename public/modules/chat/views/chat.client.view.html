@@ -1,98 +1,32 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    <!--Add the title of your typeform below-->
-    <title>Incident Report</title>
-</head>
-<body>
-  <form class="form-horizontal" ng-submit="submitTicket()">
-    <div class="form-group space">
-      <h2 class="col-sm-2">Server Name</h2>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputServer" placeholder="North American Server" ng-model="ticket.server.name">
+<div class='container'>
+  <div ng-controller='ChatController'>
+    You are known as: <span ng-bind="nickName"></span>.
+    <br/>
+    Change your nickname with <code>/nick [yourNewNick]</code>
+    <div class='row'>
+      <div class='col-md-9'>
+        <textarea style='width: 100%; height: 200px'
+             ng-disable='true' ng-model='messageLog'></textarea>
       </div>
     </div>
-    <div class="form-group space">
-      <h2 class="col-sm-2">Operating System</h2>
-      <div class="col-sm-10 testing">
-        <div class="flex">
-        <div class="radio">
-          <input type="radio" name="operating" value="Ubuntu" class="focusfix" id="ubuntu" checked="checked" ng-model="ticket.server.OS">
-          <label class="rop" for="ubuntu"><div class="ubuntu"></div></label>
-          <p>Ubuntu</p>
-        </div>
-        <div class="radio">
-          <input type="radio" name="operating" value="Windows" class="focusfix" id="wind" ng-model="ticket.server.OS">
-          <label class="rop" for="wind"><div class="windows"></div></label>
-          <p>Windows</p>
-        </div>
-        <div class="radio">
-          <input type="radio" name="operating" value="CentOS" class="focusfix" id="cent" ng-model="ticket.server.OS">
-          <label class="rop" for="cent"><div class="centos"></div></label>
-          <p>CentOS</p>
-        </div>
-        <div class="radio">
-          <input type="radio" name="operating" value="RedHat" class="focusfix" id="red" ng-model="ticket.server.OS">
-          <label class="rop" for="red"><div class="redhat"></div></label>
-          <p>RedHat</p>
-        </div>
-        <div class="invisa"></div>
-        <div class="invisa"></div>
-        </div>
+    <div class='row'>
+      &nbsp;
+    </div>
+    <div class='row'>
+      <div class='col-md-8'>
+        <form role='form' novalidate name='form'>
+          <div class='form-group'>
+            <input type='text' style='width: 80%'
+            required
+            ng-max='50'
+            ng-model='message'
+            focus>
+            <button class='btn btn-sm btn-primary'
+              ng-enable='form.$valid'
+              ng-click="sendMessage(message)">Send!</button>
+          </div>
+        </form>
       </div>
     </div>
-    <div class="form-group space">
-      <h2 class="col-sm-2">Hosting Service</h2>
-      <div  class="col-sm-10 sadmin">
-        <div class="flex">
-        <div class="radio">
-          <input type="radio" checked="checked" name="service" value="AWS" id="aws" ng-model="ticket.hostingService">
-          <label class="serv" for="aws"><div class="aws"></div></label>
-          <p>AWS</p>
-        </div>
-        <div class="radio">
-          <input type="radio" name="service" value="DigitalOcean" id="digo" ng-model="ticket.hostingService">
-          <label class="serv" for="digo"><div class="digiocean"></div></label>
-          <p>Digital Ocean</p>
-        </div>
-        <div class="radio">
-          <input type="radio" name="service" value="Google" id="goog" ng-model="ticket.hostingService">
-          <label class="serv" for="goog"><div class="gapp"></div></label>
-          <p>Google App</p>
-        </div>
-        <div class="radio">
-          <input type="radio" name="service" value="Linode" id="lino" ng-model="ticket.hostingService">
-          <label class="serv" for="lino"><div class="linode"></div></label>
-          <p>Linode</p>
-        </div>
-        <div class="radio">
-          <input type="radio" name="service" value="Rackspace" id="rack" ng-model="ticket.hostingService">
-          <label class="serv" for="rack"><div class="rack"></div></label>
-          <p>Rackspace</p>
-        </div>
-        <div class="radio">
-          <input type="radio" name="service" value="MediaTemple" id="medte" ng-model="ticket.hostingService">
-          <label class="serv" for="medte"><div class="mt"></div></label>
-          <p>MediaTemple</p>
-        </div>
-        <div class="invis"></div>
-        <div class="invis"></div>
-      </div>
-      </div>
-      </div>
-      </div>
-    </div>
-    <div class="form-group space">
-      <h2 class="col-sm-2">What's the problem?</h2>
-      <div  class="col-sm-10">
-        <textarea class="form-control" name="problem" rows="5" placeholder="Please be specific" ng-model="ticket.problem"></textarea>
-      </div>
-    </div>
-    <div class="form-group space">
-      <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-success">Submit Ticket</button>
-      </div>
-    </div>
-  </form>
-</body>
-</html>
+  </div>
+</div>

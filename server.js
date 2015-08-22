@@ -78,16 +78,6 @@ io.on('connection', function (socket) {
 		// socket.emit('updaterooms', rooms, newroom);
 	});
 
-//	socket.on('close', function() {
-//		console.log('Closing socket');
-//		socket.disconnect();	
-//	});
-
-//	socket.on('disconnect', function() {
-//		console.log('Reconnecting');	
-//		socket.reconnect();
-//	});
-
 }); // end io.on('connection')
 
 // Bootstrap passport config

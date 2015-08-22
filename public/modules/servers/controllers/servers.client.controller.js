@@ -17,7 +17,7 @@ angular.module('servers').controller('ServersController', ['$scope', '$location'
 				console.log('GoToChatRoom');
 				$scope.TicketFactory.selectedTicket = item;	
 				console.log(TicketFactory.selectedTicket);	
-				$state.go('chatApp', { "ticket_id": TicketFactory.selectedTicket._id });		
+				$state.go('chat', { "ticket_id": TicketFactory.selectedTicket._id });		
 			};
 
 		}]);

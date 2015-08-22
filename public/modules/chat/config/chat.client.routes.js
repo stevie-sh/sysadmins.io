@@ -1,15 +1,10 @@
 'use strict';
 
-angular.module('chat')
-    .config(['$stateProvider', '$urlRouterProvider',
-            function ($stateProvider, $urlRouterProvider) {
-                $stateProvider.state('chat', {
-                        url: '/chat',
-                        templateUrl: 'modules/chat/views/chat.client.view.html',
-												controller: 'ChatController'
-                }).state('signout', {
-										url: '/',
-										templateUrl: 'modules/core/views/home.client.view.html'
+angular.module('chat').config(['$stateProvider', '$urlRouterProvider',
+		function ($stateProvider, $urlRouterProvider) {
+			$stateProvider.state('chat', {
+				url: '/chat/:ticket_id',
+				templateUrl: 'modules/chat/views/chat.client.view.html'
+			});
+		}]);
 
-								});
- }]);

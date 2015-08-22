@@ -36,7 +36,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 
 					$cookies.needsRefresh = false;
 					// And redirect to the index page
-					$state.go('chat');
+					$state.go('ticket');
 				})
 				.error(function(response) {
 					$scope.error = response.message;

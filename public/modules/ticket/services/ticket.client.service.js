@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('chat').factory('TicketFactory', ['$http', function ($http) {
+angular.module('ticket').factory('TicketFactory', ['$http', function ($http) {
 		var factory = {};
 		factory.tickets = []; 
 		factory.selectedTicket = {};

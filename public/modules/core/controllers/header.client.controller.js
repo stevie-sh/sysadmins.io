@@ -18,7 +18,7 @@ angular.module('core').controller('HeaderController', ['$scope', '$location', 'A
 					$scope.loggedIn = true;
 			}
 
-				if ($location.url() === '/chat') {
+				if ($location.url() === '/ticket') {
 					if (!$scope.loggedIn) {
 						$state.go('signin');
 					}

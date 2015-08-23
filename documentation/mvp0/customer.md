@@ -16,6 +16,11 @@ in terms of total complexity and abstraction. However, it remains much much chea
 
 If a customer pivot segment is necessary, SAIO might fit into the far-left of the complexity graph
 
+Customer levels:
+1: Non-technical, not comfortable with tech.
+2: Somewhat technical. Comfortable with technology and computers or even good at them
+3. System administrator knowledge already possessed
+
 
 ##OTHER COMPETITORS:
 * On-call, available through email, chat, phone.

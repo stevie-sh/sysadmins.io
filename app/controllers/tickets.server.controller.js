@@ -47,8 +47,6 @@ exports.sendEmail = function(req, res) {
 			console.log(responseStatus.messageId); // Message-ID value used
 		}
 	});
-	console.log('dumping here\n\n\n');
-	console.log(req.body.user.email);
 	res.status(200).send();
 
 };

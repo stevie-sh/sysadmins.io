@@ -15,6 +15,12 @@ var _ = require('lodash'),
 
 var smtpTransport = nodemailer.createTransport(config.mailer.options);
 
+var ses = require('nodemailer-ses-transport');
+
+var transporter = nodemailer.createTransport(ses({
+	accessKeyId: process.env.ACCESS_KEY_ID, 
+	secretAccessKey: process.env.SECRET_ACCESS_KEY 
+}));
 /**
  * Forgot for reset password (forgot POST)
  */
@@ -29,9 +35,9 @@ exports.forgot = function(req, res, next) {
 		},
 		// Lookup user by username
 		function(token, done) {
-			if (req.body.username) {
+			if (req.body.email) {
 				User.findOne({
-					username: req.body.username
+					email: req.body.email
 				}, '-salt -password', function(err, user) {
 					if (!user) {
 						return res.status(400).send({
@@ -52,7 +58,7 @@ exports.forgot = function(req, res, next) {
 				});
 			} else {
 				return res.status(400).send({
-					message: 'Username field must not be blank'
+					message: 'Email field must not be blank'
 				});
 			}
 		},
@@ -66,14 +72,16 @@ exports.forgot = function(req, res, next) {
 			});
 		},
 		// If valid email, send reset email using service
+
+
 		function(emailHTML, user, done) {
 			var mailOptions = {
 				to: user.email,
 				from: config.mailer.from,
-				subject: 'Password Reset',
+				subject: 'Sysadmins.io: Password Reset',
 				html: emailHTML
 			};
-			smtpTransport.sendMail(mailOptions, function(err) {
+			transporter.sendMail(mailOptions, function(err) {
 				if (!err) {
 					res.send({
 						message: 'An email has been sent to ' + user.email + ' with further instructions.'
@@ -179,7 +187,7 @@ exports.reset = function(req, res, next) {
 				html: emailHTML
 			};
 
-			smtpTransport.sendMail(mailOptions, function(err) {
+			transporter.sendMail(mailOptions, function(err) {
 				done(err, 'done');
 			});
 		}

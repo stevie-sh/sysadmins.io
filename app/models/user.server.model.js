@@ -111,6 +111,17 @@ UserSchema.methods.authenticate = function(password) {
 	return this.password === this.hashPassword(password);
 };
 
+
+UserSchema.statics.getUserId = function(username) {
+	var ret2 = new Promise(function(resolve,reject) {
+		this.findOne({username: username}).exec(function (err, doc) {
+			if (err) reject(err);	
+			resolve(doc);	
+		});	
+	});
+
+	return ret2;
+};
 /**
  * Find possible not used username
  */

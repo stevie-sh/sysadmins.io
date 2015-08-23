@@ -24,6 +24,7 @@ exports.postMessage = function (req, res) {
 
 exports.createMessage = function (msg) {
 	var message = new Message(msg);
+	console.log(msg);	
 	message.save(function(err) {
 		if (err) console.log(err);
 		//res.json({ message: 'Message successfully created!'});	

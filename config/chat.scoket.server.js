@@ -4,12 +4,16 @@
 var socket = require('socket.io'),
 		http = require('http'),
 		chalk = require('chalk'),
-		config = require('./config');
-		
+		config = require('./config'),
+		mongoose = require('mongoose'),
+		User =  mongoose.model('User'),
+		ChatMessage = mongoose.model('ChatMessage'),
+		ChatRoom = mongoose.model('ChatRoom'),
+		Chat = mongoose.model('Chat');		
 
 module.exports = function(app) {
 	var server = http.createServer(app),
-			io = socket.listen(server);
+	io = socket.listen(server);
 	io.on('connection', function (socket) {
 
 		socket.on('addUser', function(username){
@@ -32,6 +36,20 @@ module.exports = function(app) {
 		socket.on('sendChat', function (data) {
 			// we tell the client to execute 'updatechat' with 2 parameters
 			io.sockets.in(socket.room).emit('updateChat', socket.username, data);
+
+			User.getUserId(socket.username)
+				.then(function(userId) {	
+					var msg = new ChatMessage({
+						_User : userId, 
+						Text : data	
+					})
+					.save(function(err) {
+						if (err) console.log(chalk.red(err));	
+					});
+				})
+				.catch(function(err) {
+					console.error(err);	
+				});
 		});
 
 		socket.on('switchRoom', function(newroom){
@@ -57,3 +75,5 @@ module.exports = function(app) {
 		console.log('Listening on http://localhost:%d', config.port);
 	});
 };
+
+

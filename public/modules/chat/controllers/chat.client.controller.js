@@ -72,7 +72,7 @@ angular.module('chat')
 					$cookies.needsRefresh = true;
 					// Create the new message in the DB	
 					$http.post('/api/chat', {
-						User: Authentication.user,
+						_User: Authentication.user._id,
 						Text: $scope.message
 					});
 

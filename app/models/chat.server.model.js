@@ -4,15 +4,15 @@ var mongoose = require('mongoose'),
 						Schema = mongoose.Schema;
 
 var ChatSchema = new Schema({
-	Rooms: { type: Schema.Types.ObjectId, ref: 'ChatRoom' }	
+	_Room: { type: Schema.Types.ObjectId, ref: 'ChatRoom' }	
 });
 
 var ChatRoomSchema = new Schema({
-	Message : { type: Schema.Types.ObjectId, ref: 'ChatMessage' }
+	_Messages : { type: [Schema.Types.ObjectId], ref: 'ChatMessage' }
 });
 
 var ChatMessageSchema = new Schema({
-	User : { type: Schema.Types.ObjectId, ref: 'User' },
+	_User : { type: Schema.Types.ObjectId, ref: 'User' },
 	Text : String,
 	Timestamp : { type: Date, default: Date.now }
 });

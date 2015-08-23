@@ -4,9 +4,8 @@
 var socket = require('socket.io'),
 		http = require('http'),
 		chalk = require('chalk'),
-		config = require('./config'),
-		chat = require('../app/controllers/chat.server.controller'),
-		user = require('../app/controllers/users/users.profile.server.controller');
+		config = require('./config');
+		
 
 module.exports = function(app) {
 	var server = http.createServer(app),

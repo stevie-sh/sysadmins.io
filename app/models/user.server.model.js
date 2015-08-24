@@ -113,10 +113,12 @@ UserSchema.methods.authenticate = function(password) {
 
 
 UserSchema.statics.getUserId = function(username) {
+	var _this = this;
+	
 	var ret2 = new Promise(function(resolve,reject) {
-		this.findOne({username: username}).exec(function (err, doc) {
-			if (err) reject(err);	
-			resolve(doc);	
+		_this.findOne({username: username}).exec(function (err, doc) {
+			if (err) reject(err); // Like an async throw error	
+			resolve(doc); // Like an async return	
 		});	
 	});
 

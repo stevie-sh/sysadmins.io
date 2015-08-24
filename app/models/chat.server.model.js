@@ -17,6 +17,19 @@ var ChatMessageSchema = new Schema({
 	Timestamp : { type: Date, default: Date.now }
 });
 
+ChatRoomSchema.statics.getMessagesFromDate = function (date) {
+	var _this = mongoose.model('ChatMessage');
+
+	var ret = new Promise (function (resolve, reject) {
+		_this.find({ Timestamp : { $gte : date }}).populate('_User', '-password -salt -resetPasswordExpires -resetPasswordToken').exec(function(err, messages) {
+			if (err) reject(err);
+			resolve(messages);	
+		});	
+	});
+
+	return ret;
+};
+
 mongoose.model('ChatMessage', ChatMessageSchema);
 mongoose.model('ChatRoom', ChatRoomSchema);
 mongoose.model('Chat', ChatSchema);							

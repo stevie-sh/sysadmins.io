@@ -16,10 +16,11 @@ module.exports = function(app) {
 	io = socket.listen(server);
 	io.on('connection', function (socket) {
 
-		socket.on('addUser', function(username){
+		socket.on('addUser', function(username, firstMessageDate){
 			console.log(chalk.red('Adding user: ' + username));
 			// store the username in the socket session for this client
 			socket.username = username;
+			socket.firstMessageDate = firstMessageDate;
 			// store the room name in the socket session for this client
 			// socket.room = 'room1';
 			// send client to room 1
@@ -63,6 +64,18 @@ module.exports = function(app) {
 			socket.broadcast.to(socket.room).emit('updateChat', 'SERVER', socket.username+' has left this room');
 			// update socket session room title
 			socket.room = newroom;
+
+			// Create a new ChatRoom in the DB with the current messages
+		
+			ChatRoom.getMessagesFromDate(socket.firstMessageDate)	
+				.then(function(messages) {
+					socket.emit('refreshChat', messages);	
+				})
+				.catch(function(err) {
+					console.error(err);	
+				});	
+			// var room = new ChatRoom( { 		
+
 			socket.broadcast.to(newroom).emit('updateChat', 'SERVER', socket.username+' has joined this room');
 			// socket.emit('updaterooms', rooms, newroom);
 		});

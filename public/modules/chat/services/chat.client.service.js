@@ -20,7 +20,14 @@ angular.module('chat')
 
 		return false;	
 	};	
-	
+
+	service.socket.on('refreshChat', function(messages) {
+		console.log(messages);	
+		angular.forEach(messages, function (value, key) {	
+			var prevMsg = messageFormatter(new Date(value.Timestamp), value._User.username, value.Text);
+			service.messageLog += prevMsg;	
+		});	
+	});	
 	// Repopulate the message log with all previous messages	
 	service.refreshChat = function () { 
 		console.log('Refreshing chat...');	
@@ -32,7 +39,6 @@ angular.module('chat')
 			$http.get('/api/chat/messages/' + $cookies.firstMessage).then(function(resp) {
 				console.log('Getting old messages');
 				angular.forEach(resp.data, function(value, key) {
-					// TODO:  Needs to reflect the nickname not just the authenticated user	
 					var prevMsg = messageFormatter(
 							new Date(value.Timestamp), user.username,
 							value.Text);

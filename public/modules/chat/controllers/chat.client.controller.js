@@ -43,7 +43,7 @@ angular.module('chat')
 			$scope.messageLog += ChatService.messageLog;
 
 			console.log('Adding user: ' + $scope.user.username);	
-			ChatService.socket.emit('addUser', $scope.user.username);	
+			ChatService.socket.emit('addUser', $scope.user.username, $cookies.firstMessage);	
 
 			if(! $stateParams.ticket_id ) {
 				console.log('Switching Rooms: ' + $scope.TicketFactory.selectedTicket._id);
@@ -70,11 +70,12 @@ angular.module('chat')
 					$log.debug('sending message', $scope.message);
 
 					$cookies.needsRefresh = true;
-					// Create the new message in the DB	
-					$http.post('/api/chat', {
-						_User: Authentication.user._id,
-						Text: $scope.message
-					});
+					// Create the new message in the DB
+					// This is now done server side in chat.socket.server.js	
+					// $http.post('/api/chat', {
+					// 	_User: Authentication.user._id,
+					// 	Text: $scope.message
+					// });
 
 					$log.debug('message sent', $scope.message);
 					$scope.message = '';

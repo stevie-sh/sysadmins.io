@@ -59,5 +59,6 @@ mongod
 *.tmp
 *.bak
 *.swp
+*.swo
 logs/
 Build/

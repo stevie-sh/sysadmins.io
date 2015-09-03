@@ -34,7 +34,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 				
 					console.log('Authentication Controller -- Message Log' + ChatService.messageLog);	
 
-					$cookies.needsRefresh = false;
+					$cookies.firstLoad = true;
 					// And redirect to the index page
 					$state.go('ticket');
 				})

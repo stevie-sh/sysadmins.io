@@ -32,7 +32,7 @@ var app = require('./config/express')(db);
 // Bootstrap passport config
 require('./config/passport')();
 
-var chat = require('./config/chat.scoket.server.js')(app);
+var chat = require('./config/chat.socket.server.js')(app);
 
 // Start the app by listening on <port>
 //app.listen(config.port);

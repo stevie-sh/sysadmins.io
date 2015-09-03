@@ -6,46 +6,60 @@ angular.module('chat')
 	var service = {
 		socket : socketFactory(),
 		messageLog : '',
-		emailToUserName : function (email) { return email.substring(0, email.indexOf('@'));}
+		emailToUserName : function (email) { return email.substring(0, email.indexOf('@'));},
+		listeners: [] 
 	};
 
 	var user = service.user = Authentication.user;
-	
+
+	service.refreshListeners = function () {
+		console.log('[chat.client.service.js] ', 'Refreshing necessary listeners');
+		if (service.listeners.indexOf(service.updateChat) === -1) {
+			console.log('[chat.client.service.js] ', 'Refreshing updateChat listener');
+			service.socket.addListener('updateChat', service.updateChat);	
+			service.listeners.push(service.updateChat);
+		}
+		if (service.listeners.indexOf(service.refreshChat) === -1) {
+			console.log('[chat.client.service.js] ', 'Refreshing refreshChat listener');
+			service.socket.addListener('refreshChat', service.refreshChat);	
+			service.listeners.push(service.refreshChat);
+		}	
+
+		if (service.listeners.length === 0) {
+			console.log('[chat.client.service.js] ', 'Refreshing updateChat listener');
+			service.socket.addListener('updateChat', service.updateChat);	
+			service.listeners.push(service.updateChat);
+			console.log('[chat.client.service.js] ', 'Refreshing refreshChat listener');
+			service.socket.addListener('refreshChat', service.refreshChat);	
+			service.listeners.push(service.refreshChat);
+		}
+		console.log('[chat.client.service.js] ', service.listeners);
+	};
+
 	service.matchedChatCommand = function (msg, regEx) {
 		var match = msg.match(regEx);	
 		if (angular.isDefined(match) && 
-						angular.isArray(match) && match.length === 2){
+				angular.isArray(match) && match.length === 2){
 			return match;
 		}
 
 		return false;	
 	};	
 
-	service.socket.on('refreshChat', function(messages) {
-		console.log(messages);	
-		angular.forEach(messages, function (value, key) {	
-			var prevMsg = messageFormatter(new Date(value.Timestamp), value._User.username, value.Text);
-			service.messageLog += prevMsg;	
-		});	
-	});	
-	// Repopulate the message log with all previous messages	
-	service.refreshChat = function () { 
-		console.log('Refreshing chat...');	
-		if ($cookies.needsRefresh !== 'true') return false;		
+	service.updateChat = function(username, data, date) {
+		console.log('Updating chat ....');
 
-		console.log($cookies.firstMessage);
-		if ($cookies.firstMessage) {
-			console.log('Getting previous messges ...');	
-			$http.get('/api/chat/messages/' + $cookies.firstMessage).then(function(resp) {
-				console.log('Getting old messages');
-				angular.forEach(resp.data, function(value, key) {
-					var prevMsg = messageFormatter(
-							new Date(value.Timestamp), user.username,
-							value.Text);
-					console.log('Appending to message log');
-					service.messageLog += prevMsg;
-				});	
-			});
+		service.messageLog += messageFormatter(date? date : new Date(), username, data);
+	};
+
+
+	service.refreshChat = function(messages) {
+		console.log('RefreshChat Messages: ');
+		if (messages) {	
+			service.messageLog = 'Ready to Chat!\n';	
+			angular.forEach(messages, function (value, key) {	
+				service.updateChat(value._User.username, value.Text, new Date(value.Timestamp));	
+			});	
 		}
 	};
 

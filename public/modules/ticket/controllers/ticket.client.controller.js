@@ -7,8 +7,7 @@ angular.module('ticket').controller('TicketController', ['$scope', '$location', 
 
 			$scope.submitTicket = function () {
 				console.log('Submit Clicked');
-				var ticket = $scope.ticket;
-
+				
 				$scope.ticket._user = $scope.authentication.user._id;	
 				var req = {
 					method: 'POST',
@@ -16,15 +15,15 @@ angular.module('ticket').controller('TicketController', ['$scope', '$location', 
 					headers: {
 						'Content-Type': 'application/json; charset=UTF-8'
 					},
-					data: { ticket: ticket }
+					data: { ticket: $scope.ticket }
 				};
 
-				$http(req).success(function () {
+				$http(req).success(function (response) {
 				var ticketHTML = "<h1>User submitted: " + $scope.authentication.user.email
-					+	"<h2>Server Name: " + ticket.server.name + "</h2>"
-					+ "<h3>Operating System: " + ticket.server.OS + "</h3>"
-					+ "<h3>Hosting Service: " + ticket.hostingService + "</h3>"
-					+ "<h3>Problem: " + ticket.problem + "</h3>" 
+					+	"<h2>Server Name: " + $scope.ticket.server.name + "</h2>"
+					+ "<h3>Operating System: " + $scope.ticket.server.OS + "</h3>"
+					+ "<h3>Hosting Service: " + $scope.ticket.hostingService + "</h3>"
+					+ "<h3>Problem: " + $scope.ticket.problem + "</h3>" 
 					+ "<h3>Add 'sysadminsio' on Skype to access the chat client during our beta period</h3>";
 
 					req = {

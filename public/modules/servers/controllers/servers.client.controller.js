@@ -6,7 +6,7 @@ angular.module('servers').controller('ServersController', ['$scope', '$location'
 			$scope.TicketFactory = TicketFactory;
 			
 			$scope.isCollapsed = false;
-			$scope.currentUser = { 'user._id': Authentication.user._id };
+			$scope.currentUser = { 'user._id': $scope.authentication.user._id };
 
 			// Call /api/ticket, and set TicketFactory.ticket	
 			ServersFactory.getTickets().then(function () {
@@ -17,7 +17,7 @@ angular.module('servers').controller('ServersController', ['$scope', '$location'
 				console.log('GoToChatRoom');
 				$scope.TicketFactory.selectedTicket = item;	
 				console.log(TicketFactory.selectedTicket);	
-				$state.go('chat', { "ticket_id": TicketFactory.selectedTicket._id });		
+				$state.go('chat', { 'ticket_id': TicketFactory.selectedTicket._id });		
 			};
 
 		}]);

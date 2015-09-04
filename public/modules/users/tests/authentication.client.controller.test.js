@@ -6,6 +6,7 @@
 		// Initialize global variables
 		var AuthenticationController,
 			scope,
+			$state,
 			$httpBackend,
 			$stateParams,
 			$location;
@@ -30,12 +31,13 @@
 		// The injector ignores leading and trailing underscores here (i.e. _$httpBackend_).
 		// This allows us to inject a service but then attach it to a variable
 		// with the same name as the service.
-		beforeEach(inject(function($controller, $rootScope, _$location_, _$stateParams_, _$httpBackend_) {
+		beforeEach(inject(function($controller, $rootScope, _$location_, _$stateParams_, _$httpBackend_, _$state_) {
 			// Set a new global scope
 			scope = $rootScope.$new();
 
 			// Point global variables to injected services
 			$stateParams = _$stateParams_;
+			$state  = _$state_;
 			$httpBackend = _$httpBackend_;
 			$location = _$location_;
 
@@ -48,8 +50,7 @@
 			});
 		}));
 
-
-		it('$scope.signin() should login with a correct user and password', function() {
+		it('$scope.signin() should login with a correct user', function() {
 			// Test expected GET request
 			$httpBackend.when('POST', '/auth/signin').respond(200, 'Fred');
 
@@ -58,7 +59,7 @@
 
 			// Test scope value
 			expect(scope.authentication.user).toEqual('Fred');
-			expect($location.url()).toEqual('/chat');
+			expect($location.url()).toEqual('/ticket');
 		});
 
 		it('$scope.signin() should fail to log in with nothing', function() {
@@ -89,6 +90,15 @@
 
 			// Test scope value
 			expect(scope.error).toEqual('Unknown user');
+		});
+
+		it('$scope.signin() should redirect to /ticket after signin', function() {
+			$httpBackend.when('POST','/auth/signin').respond(200, 'rivanov'); 	
+			
+			scope.signin();
+			$httpBackend.flush();	
+			
+			expect($state.current.name).toBe('ticket');	
 		});
 
 		it('$scope.signup() should register with correct data', function() {

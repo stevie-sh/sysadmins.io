@@ -1,0 +1,58 @@
+Mappings:
+  RegionMap:
+    us-east-1:
+      AMI: ami-02da3a138888ced85 # Amazon Linux 2 AMI (HVM)
+Resources:
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.nano
+      ImageId: 
+        !FindInMap
+          - RegionMap
+          - !Ref AWS::Region
+          - AMI
+      SecurityGroupIds:
+        - !Ref MySecurityGroup
+      Tags:
+        - Key: Name
+          Value: Sysadmins
+      UserData:
+        Fn::Base64: 
+          !Sub |
+            #!/bin/bash    
+            yum install git -y        
+            curl -L https://git.io/n-install | bash -s -- -y
+            # Reload Path and environmental variables
+            source ~/.bashrc 
+            n 0.10.28
+            git clone https://github.com/stevie-sh/sysadmins.io.git
+            cd sysadmins.io
+            npm install -g grunt-cli
+            npm install -g bower
+            npm install || true
+            bower install --config.interactive=false --allow-root || true
+            echo $'[mongodb-org-4.4]\nname=MongoDB Repository\nbaseurl=https://repo.mongodb.org/yum/amazon/2/mongodb-org/4.4/x86_64/\ngpgcheck=1\nenabled=1\ngpgkey=https://www.mongodb.org/static/pgp/server-4.4.asc' > /etc/yum.repos.d/mongodb-org-4.4.repo
+            yum install -y mongodb-org
+            systemctl start mongod
+            cd config
+            echo "module.exports.port = 80" >> config.js
+            cd ..
+            ./node_modules/.bin/forever start server.js
+  MySecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Open Ports 22 and 80
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: '22'
+        ToPort: '22'
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: '80'
+        ToPort: '80'
+        CidrIp: 0.0.0.0/0
+Outputs:
+  Website:
+    Description: The Public DNS for the EC2 Instance
+    Value: !Sub 'http://${EC2Instance.PublicDnsName}'

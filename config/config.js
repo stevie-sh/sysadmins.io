@@ -107,3 +107,7 @@ module.exports.getCSSOverrides = function() {
 module.exports.getCurrentView = function() {
 	return null;    
 }
+
+if (process.env.NODE_ENV === 'production'){
+	module.exports.port = 80;
+}

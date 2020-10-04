@@ -35,9 +35,7 @@ Resources:
             echo $'[mongodb-org-4.4]\nname=MongoDB Repository\nbaseurl=https://repo.mongodb.org/yum/amazon/2/mongodb-org/4.4/x86_64/\ngpgcheck=1\nenabled=1\ngpgkey=https://www.mongodb.org/static/pgp/server-4.4.asc' > /etc/yum.repos.d/mongodb-org-4.4.repo
             yum install -y mongodb-org
             systemctl start mongod
-            cd config
-            echo "module.exports.port = 80" >> config.js
-            cd ..
+            export NODE_ENV=production
             ./node_modules/.bin/forever start server.js
   MySecurityGroup:
     Type: AWS::EC2::SecurityGroup
